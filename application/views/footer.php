@@ -2,26 +2,20 @@
         <div class="container-fluid">
             <nav class="pull-left">
                 <ul>
-
                     <li>
-                        <a href="http://www.creative-tim.com">
-                            Creative Tim
+                        <a href="<?= base_url(); ?>">
+                            Printing Offset Kediri
                         </a>
                     </li>
                     <li>
-                        <a href="http://blog.creative-tim.com">
-                           Blog
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://www.creative-tim.com/license">
-                            Licenses
+                        <a href="<?= base_url(); ?>">
+                           Logout
                         </a>
                     </li>
                 </ul>
             </nav>
             <div class="copyright pull-right">
-                &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+                &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="#">Kevin</a>
             </div>
         </div>
     </footer>
@@ -65,14 +59,14 @@
 
             demo.initChartist();
 
-            $.notify({
-                icon: 'ti-gift',
-                message: "Printing Offset Kediri"
+            // $.notify({
+            //     icon: 'ti-user',
+            //     message: "User's Dashboard"
 
-            },{
-                type: 'success',
-                timer: 4000
-            });
+            // },{
+            //     type: 'success',
+            //     timer: 4000
+            // });
 
         });
     </script>

@@ -91,17 +91,29 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="#"><?= $page_title ?></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-panel"></i>
-                                <p>Stats</p>
+                                <i class="ti-search"></i>
+                                <p>Search</p>
                             </a>
                         </li>
-                        <li class="dropdown">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="ti-files"></i>
+                                <p>Upload File</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="ti-receipt"></i>
+                                <p>History</p>
+                            </a>
+                        </li>
+                        <!-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
                                     <p class="notification">5</p>
@@ -115,11 +127,11 @@
                                 <li><a href="#">Notification 4</a></li>
                                 <li><a href="#">Another notification</a></li>
                               </ul>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="#">
-                                <i class="ti-settings"></i>
-                                <p>Settings</p>
+                                <i class="ti-email"></i>
+                                <p>Inbox</p>
                             </a>
                         </li>
                     </ul>
