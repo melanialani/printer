@@ -1,14 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Referensi extends CI_Controller {
 
 	public function index() {
-		$this->dashboard();
+		$this->list();
 	}
 
-	public function dashboard() {
-		$data['page_title'] = 'Home';
+	public function list() {
+		$data['page_title'] = 'List Referensi';
+		$data['page_note'] = 'Referensi yang akan ditampilkan untuk calon client';
+
+		
 
 		$this->load->view('header', $data);
 		$this->load->view('dashboard', $data);
