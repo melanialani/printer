@@ -59,19 +59,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= site_url('user/list'); ?>">
+                    <a href="<?= site_url('user/lst'); ?>">
                         <i class="ti-user"></i>
                         <p>Users Management</p>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= site_url('referensi/list'); ?>">
+                    <a href="<?= site_url('referensi/lst'); ?>">
                         <i class="ti-view-list-alt"></i>
                         <p>Referensi</p>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= site_url('barang/list'); ?>">
+                    <a href="<?= site_url('barang/lst'); ?>">
                         <i class="ti-archive"></i>
                         <p>Stock Management</p>
                     </a>

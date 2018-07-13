@@ -29,6 +29,7 @@
                 </div>
             </div>
             <?php if (!empty($detail)) { ?>
+            <button type="submit" class="btn btn-info btn-fill btn-wd">Tambah Detail Referensi</button>
             <div class="col-md-9">
                 <div class="card">
                     <div class="header">
@@ -39,13 +40,15 @@
                         <table class="table table-striped">
                             <thead><tr>
                                 <th>ID</th>
+                                <th>Parent</th>
                                 <th>Nama</th>
                             </tr></thead>
                             <tbody>
-                                <?php foreach ($row as $key => $value) {
+                                <?php foreach ($row_detail as $key => $value) {
                                     ?>
                                     <tr>
                                         <td><?= $value['id']; ?></td>
+                                        <td><?= $value['parent']; ?></td>
                                         <td><a href="<?= site_url('referensi/detail/'.$value['id']); ?>"><?= $value['nama']; ?></a></td>
                                     </tr>
                                     <?php  
