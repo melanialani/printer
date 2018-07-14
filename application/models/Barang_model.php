@@ -9,17 +9,38 @@ class Barang_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function getAllBarang() {
+	public function getAll() {
 		return $this->db->get('barang')->result_array();
 	}
 
-	public function addBarang($nama,$jumlah,$warning,$harga) {
+	public function getOne($id) {
+		$this->db->where('id', $id);
+		return $this->db->get('barang')->result_array();
+	}
+
+	public function insert($nama,$jumlah,$warning,$harga) {
 		$record = array(
 			'nama' => $nama,
 			'jumlah' => $jumlah,
 			'warning' => $warning,
 			'harga' => $harga
 		);
-		return $this->db->insert('barang', $record)->result_array();
+		return $this->db->insert('barang', $record);
+	}
+
+	public function update($id,$nama,$jumlah,$warning,$harga) {
+		$record = array(
+			'nama' => $nama,
+			'jumlah' => $jumlah,
+			'warning' => $warning,
+			'harga' => $harga
+		);
+		$this->db->where('id', $id);
+		return $this->db->update('barang', $record);
+	}
+
+	public function delete($id) {
+		$this->db->where('id', $id);
+		return $this->db->delete('barang');
 	}
 }

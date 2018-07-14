@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div align="right">
-                    <a href="<?= site_url('barang/add/'); ?>" class="btn btn-info btn-fill btn-wd">Tambah Barang Baru</a>
+                    <a href="<?= site_url('user/add/'); ?>" class="btn btn-info btn-fill btn-wd">Tambah User Baru</a>
                     <!-- <button class="btn btn-sm btn-success" style="margin-left: 2px;" onclick="goEdit()" style="margin-left: 3px;">Ubah Data</button> -->
                 </div>
                 <br/>
@@ -17,8 +17,10 @@
                             <thead><tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>Jumlah</th>
-                                <th>Harga</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
                                 <th width="10%">Aksi</th>
                             </tr></thead>
                             <tbody>
@@ -27,13 +29,20 @@
                                     <tr>
                                         <td><?= $value['id']; ?></td>
                                         <td><?= $value['nama']; ?></td>
-                                        <td><?= $value['jumlah']; ?></td>
-                                        <td><?= number_format($value['harga']); ?></td>
+                                        <td><?= $value['username']; ?></td>
+                                        <td><?= $value['email']; ?></td>
+                                        <td><?= $value['role']; ?></td>
+                                        <td><?= $value['is_active']; ?></td>
                                         <td align="center">
-                                            <a href="<?= site_url('barang/edit/'.$value['id']); ?>" class="btn btn-waning btn-xs"><span class="ti-pencil" title="Edit"></span></a>
-                                            <!-- <span class="icon-name"> Edit</span> -->
-                                            <a href="<?= site_url('barang/delete/'.$value['id']); ?>" class="btn btn-danger btn-xs"><span class="ti-trash" title="Delete"></span></a>
-                                            <!-- <span class="icon-name"> Delete</span> -->
+                                            <a href="<?= site_url('user/edit/'.$value['id']); ?>" class="btn btn-waning btn-xs"><span class="ti-pencil" title="Edit"></span></a>
+                                            <?php if ($value['is_active']) { ?>
+                                                <?= form_hidden('status', 0); ?>
+                                                <a href="<?= site_url('user/active/'.$value['id']); ?>" class="btn btn-info btn-xs"><span class="ti-reload" title="Deactivate"></span></a>
+                                            <?php } else { ?>
+                                                <?= form_hidden('status', 1); ?>
+                                                <a href="<?= site_url('user/active/'.$value['id']); ?>" class="btn btn-info btn-xs"><span class="ti-reload" title="Activate"></span></a>
+                                            <?php } ?>
+                                            <a href="<?= site_url('user/delete/'.$value['id']); ?>" class="btn btn-danger btn-xs"><span class="ti-trash" title="Delete"></span></a>
                                         </td>
                                     </tr>
                                     <?php  
