@@ -33,6 +33,12 @@
     <!-- <link href="assets/css/themify-icons.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?= base_url('assets/assets/css/themify-icons.css'); ?>" />
 
+    <!--  DataTables     -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/DataTables/datatables.min.css'); ?>"/>
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/DataTables/DataTables-1.10.18/css/jquery.dataTables.css'); ?>"/>
+    <script type="text/javascript" src="<?= base_url('assets/DataTables/datatables.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?= base_url('assets/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js'); ?>"></script>
+
 </head>
 <body>
 

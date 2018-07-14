@@ -29,7 +29,7 @@
     <!--   Core JS Files   -->
     <!-- <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="assets/js/bootstrap.min.js" type="text/javascript"></script> -->
-    <script type="text/javascript" src="<?= base_url('assets/assets/js/jquery-1.10.2.js'); ?>"></script>
+    <!-- <script type="text/javascript" src="<?= base_url('assets/assets/js/jquery-1.10.2.js'); ?>"></script> -->
     <script type="text/javascript" src="<?= base_url('assets/assets/js/bootstrap.min.js'); ?>"></script>
 
     <!--  Checkbox, Radio & Switch Plugins -->

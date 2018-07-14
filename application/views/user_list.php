@@ -12,8 +12,8 @@
                         <h4 class="title"><?= $page_title; ?></h4>
                         <p class="category"><?= $page_note; ?></p>
                     </div>
-                    <div class="content table-responsive table-full-width">
-                        <table class="table table-striped">
+                    <div class="content table-responsive">
+                        <table id="myTable" class="table table-striped">
                             <thead><tr>
                                 <th>ID</th>
                                 <th>Nama</th>
@@ -56,6 +56,12 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+           $('#myTable').dataTable();
+       });
+</script>
 
 <script>
 function goGen(){
