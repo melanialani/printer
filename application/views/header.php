@@ -58,7 +58,7 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="<?= site_url('login/dashboard'); ?>">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
