@@ -65,21 +65,39 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= site_url('user/lst'); ?>">
+                    <a href="<?= site_url('user'); ?>">
                         <i class="ti-user"></i>
                         <p>Users Management</p>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= site_url('referensi/lst'); ?>">
+                    <a href="<?= site_url('referensi'); ?>">
                         <i class="ti-view-list-alt"></i>
                         <p>Referensi</p>
                     </a>
                 </li>
                 <li>
-                    <a href="<?= site_url('barang/lst'); ?>">
+                    <a href="<?= site_url('barang'); ?>">
                         <i class="ti-archive"></i>
                         <p>Stock Management</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ti-files"></i>
+                        <p>Upload File</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ti-receipt"></i>
+                        <p>History</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="ti-email"></i>
+                        <p>Messages</p>
                     </a>
                 </li>
             </ul>
@@ -102,23 +120,24 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#">
                                 <i class="ti-search"></i>
                                 <p>Search</p>
                             </a>
                         </li>
+                        <?php if (!empty($_SESSION['printer']['loggedin'])) { ?>
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-files"></i>
-                                <p>Upload File</p>
+                            <a href="<?= site_url('login/logout'); ?>">
+                                <p>Logout</p>
                             </a>
                         </li>
+                        <?php } else { ?>
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-receipt"></i>
-                                <p>History</p>
+                            <a href="<?= site_url('login'); ?>">
+                                <p>Login</p>
                             </a>
                         </li>
+                        <?php } ?>                    
                         <!-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="ti-bell"></i>
@@ -134,12 +153,6 @@
                                 <li><a href="#">Another notification</a></li>
                               </ul>
                         </li> -->
-                        <li>
-                            <a href="#">
-                                <i class="ti-email"></i>
-                                <p>Inbox</p>
-                            </a>
-                        </li>
                     </ul>
 
                 </div>

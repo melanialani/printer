@@ -45,7 +45,7 @@ class User extends CI_Controller {
 		$data['detail'] = $detail[0];
 
 		if ($this->input->post('button') == 'save'){
-			$result = $this->User->update($id,$this->input->post('nama'),$this->input->post('username'),$this->input->post('password'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
+			$result = $this->User->update($id,$this->input->post('nama'),$this->input->post('username'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
 			if ($result)
 				redirect('user');
 		}

@@ -31,20 +31,20 @@ class User_model extends CI_Model {
 		$record = array(
 			'nama' => $nama,
 			'username' => $username,
-			'password' => md5('$password'),
+			'password' => md5($password),
 			'email' => $email,
 			'photo' => $photo,
 			'id_role' => $id_role,
 			'is_active' => $is_active
 		);
+		file_put_contents('test.txt', json_encode($record).$password);
 		return $this->db->insert('users', $record);
 	}
 
-	public function update($id,$nama,$username,$password,$email,$photo,$id_role,$is_active) {
+	public function update($id,$nama,$username,$email,$photo,$id_role,$is_active) {
 		$record = array(
 			'nama' => $nama,
 			'username' => $username,
-			'password' => md5($password),
 			'email' => $email,
 			'photo' => $photo,
 			'id_role' => $id_role,

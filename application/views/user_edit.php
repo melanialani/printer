@@ -75,7 +75,7 @@
                                         <?php if (!$edited) { ?>
                                             <input type="password" class="form-control border-input" id="password" name="password" required>
                                         <?php } else { ?>
-                                            <input type="password" class="form-control border-input" id="password" name="password" required value="<?= $detail['password'] ?>">
+                                            <input type="password" class="form-control border-input" id="password" name="password" required disabled value="<?= $detail['password'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
