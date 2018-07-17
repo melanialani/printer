@@ -37,7 +37,6 @@ class User_model extends CI_Model {
 			'id_role' => $id_role,
 			'is_active' => $is_active
 		);
-		file_put_contents('test.txt', json_encode($record).$password);
 		return $this->db->insert('users', $record);
 	}
 

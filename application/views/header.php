@@ -28,8 +28,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/assets/css/demo.css'); ?>" />
 
     <!--  Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"> -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'> -->
     <!-- <link href="assets/css/themify-icons.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?= base_url('assets/assets/css/themify-icons.css'); ?>" />
 
@@ -79,7 +79,7 @@
                 <li>
                     <a href="<?= site_url('barang'); ?>">
                         <i class="ti-archive"></i>
-                        <p>Stock Management</p>
+                        <p>Product Management</p>
                     </a>
                 </li>
                 <li>

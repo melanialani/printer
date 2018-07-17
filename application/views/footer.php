@@ -7,11 +7,6 @@
                             Printing Offset Kediri
                         </a>
                     </li>
-                    <li>
-                        <a href="<?= base_url(); ?>">
-                           Logout
-                        </a>
-                    </li>
                 </ul>
             </nav>
             <div class="copyright pull-right">
