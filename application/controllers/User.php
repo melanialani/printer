@@ -11,7 +11,7 @@ class User extends CI_Controller {
 		$data['page_title'] = 'List User';
 		$data['page_note'] = 'Daftar seluruh user';
 
-		$data['row'] = $this->User->getAll();
+		$data['row'] = $this->MUser->getAll();
 
 		$this->load->view('header', $data);
 		$this->load->view('user_list', $data);
@@ -22,10 +22,10 @@ class User extends CI_Controller {
 		$data['page_title'] = 'Tambah User Baru';
 		$data['edited'] = false;
 
-		$data['role'] = $this->User->getUserRole();
+		$data['role'] = $this->MUser->getUserRole();
 
 		if ($this->input->post('button') == 'save'){
-			$result = $this->User->insert($this->input->post('nama'),$this->input->post('username'),$this->input->post('password'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
+			$result = $this->MUser->insert($this->input->post('nama'),$this->input->post('username'),$this->input->post('password'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
 			if ($result)
 				redirect('user');
 		}
@@ -39,13 +39,13 @@ class User extends CI_Controller {
 		$data['page_title'] = 'Edit User';
 		$data['edited'] = true;
 
-		$data['role'] = $this->User->getUserRole();
+		$data['role'] = $this->MUser->getUserRole();
 
-		$detail = $this->User->getOne($id);
+		$detail = $this->MUser->getOne($id);
 		$data['detail'] = $detail[0];
 
 		if ($this->input->post('button') == 'save'){
-			$result = $this->User->update($id,$this->input->post('nama'),$this->input->post('username'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
+			$result = $this->MUser->update($id,$this->input->post('nama'),$this->input->post('username'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
 			if ($result)
 				redirect('user');
 		}
@@ -56,12 +56,12 @@ class User extends CI_Controller {
 	}
 
 	public function delete($id) {
-		$result = $this->User->delete($id);
+		$result = $this->MUser->delete($id);
 		if ($result) redirect('user');
 	}
 
 	public function active($id) {
-		$result = $this->User->updateActiveUser($id, $this->input->post('status'));
+		$result = $this->MUser->updateActiveUser($id, $this->input->post('status'));
 		if ($result) redirect('user');
 	}
 }

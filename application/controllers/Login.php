@@ -12,16 +12,19 @@ class Login extends CI_Controller {
 		$data['notification'] = NULL;
 
 		if ($this->input->post('button') == 'login'){
-			$result = $this->User->getLogin($this->input->post('username'),$this->input->post('password'));
+			$result = $this->MUser->getLogin($this->input->post('username'),$this->input->post('password'));
 			if (!empty($result)){
-				$_SESSION['printer']['loggedin'] = true;
-				$_SESSION['printer']['username'] = $this->input->post('username');
-				$_SESSION['printer']['role'] = $result[0]['id_role'];
+				$_SESSION['printer']['user']['loggedin'] = true;
+				$_SESSION['printer']['user']['username'] = $this->input->post('username');
+				$_SESSION['printer']['user']['role'] = $result[0]['role'];
+				$_SESSION['printer']['user']['nama'] = $result[0]['nama_user'];
+				$_SESSION['printer']['user']['email'] = $result[0]['email'];
+				$_SESSION['printer']['user']['photo'] = $result[0]['photo'];
 			} else 
 				$data['notification'] = 'Username / Password salah';
 		}
 
-		if (!empty($_SESSION['printer']['loggedin']))
+		if (!empty($_SESSION['printer']['user']))
 			$this->dashboard();
 		else {
 			$this->load->view('header', $data);
@@ -31,9 +34,7 @@ class Login extends CI_Controller {
 	}
 
 	public function logout() {
-		unset($_SESSION['printer']['loggedin']);
-		unset($_SESSION['printer']['username']);
-		unset($_SESSION['printer']['role']);
+		unset($_SESSION['printer']['user']);
 		$this->login_user();
 	}
 

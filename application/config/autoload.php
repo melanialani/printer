@@ -132,4 +132,12 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Referensi_model' => 'Referensi', 'Barang_model' => 'Barang', 'User_model' => 'User');
+$autoload['model'] = array(
+	'Referensi_model' => 'MReferensi', 
+	'Barang_model' => 'MBarang', 
+	'User_model' => 'MUser',
+	'JenisKertas_model' => 'MJenisKertas',
+	'JenisCetakan_model' => 'MJenisCetakan',
+	'UkuranKertas_model' => 'MUkuranKertas',
+	'Plate_model' => 'MPlate'
+);
