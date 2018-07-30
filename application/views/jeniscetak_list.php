@@ -17,7 +17,7 @@
                             <thead><tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>Aksi</th>
+                                <th></th>
                             </tr></thead>
                             <tbody>
                                 <?php foreach ($row as $key => $value) {

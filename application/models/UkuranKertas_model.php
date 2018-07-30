@@ -16,7 +16,7 @@ class UkuranKertas_model extends CI_Model {
 	public function getAllWithParent() {
 		$this->db->from('barang b, ukuran_kertas uk');
 		$this->db->where('b.id_barang = uk.id_barang');
-		$this->db->order_by('jk.id_barang', 'asc');
+		$this->db->order_by('uk.id_barang', 'asc');
 		return $this->db->get()->result_array();
 	}
 

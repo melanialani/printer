@@ -8,104 +8,112 @@
                     </div>
                     <div class="content">
                         <?php if (!$edited) { ?>
-                            <?= form_open('user/add'); ?>
+                            <?= form_open('barang/add'); ?>
                         <?php } else { ?>
-                            <?= form_open('user/edit/'.$detail['id_user']); ?>
+                            <?= form_open('barang/edit/'.$detail['id_barang']); ?>
                         <?php } ?>
-                            <!-- FULL NAME & ROLE -->
+
+                            <!-- ID & NAME -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Nama Lengkap</label>
+                                        <label>ID Barang</label>
                                         <?php if (!$edited) { ?>
-                                            <input type="text" class="form-control border-input" placeholder="John Doe" id="nama" name="nama" required>
+                                            <input type="text" class="form-control border-input" placeholder="Automatically Generated" id="id" name="id" required disabled>
                                         <?php } else { ?>
-                                            <input type="text" class="form-control border-input" placeholder="John Doe" id="nama" name="nama" required value="<?= $detail['nama_user'] ?>">
+                                            <input type="text" class="form-control border-input" placeholder="Automatically Generated" id="id" name="id" required disabled value="<?= $detail['id_barang'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Role User</label>
+                                        <label>Nama Barang</label>
                                         <?php if (!$edited) { ?>
-                                            <!-- <input type="text" class="form-control border-input" placeholder="Customer" id="role" name="role" required> -->
-                                            <select name="role" id="role" class="form-control border-input" required>
-                                            <?php foreach ($role as $value) {
-                                                    echo "<option value='". $value['id'] . "'>" . $value['nama'] . "</option>";
-                                                } ?>
-                                            </select>
+                                            <input type="text" class="form-control border-input" placeholder="Nama Barang" id="nama" name="nama" required>
                                         <?php } else { ?>
-                                            <!-- <input type="text" class="form-control border-input" placeholder="Customer" id="role" name="role" required value="<?= $detail['role'] ?>"> -->
-                                            <select name="role" id="role" class="form-control border-input" required>
-                                            <?php foreach ($role as $value) {
-                                                if ( $value['id'] == $detail['role'])
-                                                    echo "<option value='". $value['id'] . "' selected>" . $value['nama'] . "</option>";
-                                                else 
-                                                    echo "<option value='". $value['id'] . "'>" . $value['nama'] . "</option>";
-                                                } ?>
-                                            </select>
+                                            <input type="text" class="form-control border-input" placeholder="Nama Barang" id="nama" name="nama" required value="<?= $detail['nama_barang'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- USERNAME & PASSWORD -->
+                            <!-- HARGA BELI & HARGA JUAL -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Username</label>
+                                        <label>Harga Beli</label>
                                         <?php if (!$edited) { ?>
-                                            <input type="text" class="form-control border-input" placeholder="username" id="username" name="username" required>
+                                            <input type="number" class="form-control border-input" placeholder="1000" id="beli" name="beli" required>
                                         <?php } else { ?>
-                                            <input type="text" class="form-control border-input" placeholder="username" id="username" name="username" required value="<?= $detail['username'] ?>">
+                                            <input type="number" class="form-control border-input" placeholder="1000" id="beli" name="beli" required value="<?= $detail['harga_beli'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Password Awal</label>
+                                        <label>Harga Jual</label>
                                         <?php if (!$edited) { ?>
-                                            <input type="password" class="form-control border-input" id="password" name="password" required>
+                                            <input type="number" class="form-control border-input" placeholder="1500" id="jual" name="jual" required>
                                         <?php } else { ?>
-                                            <input type="password" class="form-control border-input" id="password" name="password" required disabled value="<?= $detail['password'] ?>">
+                                            <input type="number" class="form-control border-input" placeholder="1500" id="jual" name="jual" required disabled value="<?= $detail['harga_jual'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- EMAIL & HP -->
+                            <!-- STOCK AWAL & STOCK -->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Email</label>
+                                        <label>Stock Awal</label>
                                         <?php if (!$edited) { ?>
-                                            <input type="email" class="form-control border-input" placeholder="name@mail.com" id="email" name="email" required>
+                                            <input type="number" class="form-control border-input" placeholder="150" id="stock_awal" name="stock_awal" required>
                                         <?php } else { ?>
-                                            <input type="email" class="form-control border-input" placeholder="name@mail.com" id="email" name="email" required value="<?= $detail['email'] ?>">
+                                            <input type="number" class="form-control border-input" placeholder="150" id="stock_awal" name="stock_awal" required value="<?= $detail['stock_awal'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>No. HP</label>
+                                        <label>Stock</label>
                                         <?php if (!$edited) { ?>
-                                            <input type="number" class="form-control border-input" placeholder="081234567890" id="hp" name="hp">
+                                            <input type="number" class="form-control border-input" placeholder="148" id="stock" name="stock">
                                         <?php } else { ?>
-                                            <input type="number" class="form-control border-input" placeholder="081234567890" id="hp" name="hp" value="<?= $detail['no_hp'] ?>">
+                                            <input type="number" class="form-control border-input" placeholder="148" id="stock" name="stock" value="<?= $detail['stock'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- ALAMAT -->
+                            <!-- JUMLAH & WARNING & WARNA -->
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Alamat</label>
+                                        <label>Jumlah</label>
                                         <?php if (!$edited) { ?>
-                                            <input type="text" class="form-control border-input" placeholder="Alamat Lengkap" id="alamat" name="alamat">
+                                            <input type="number" class="form-control border-input" placeholder="57" id="jumlah" name="jumlah" required>
                                         <?php } else { ?>
-                                            <input type="text" class="form-control border-input" placeholder="Alamat Lengkap" id="alamat" name="alamat" value="<?= $detail['alamat_user'] ?>">
+                                            <input type="number" class="form-control border-input" placeholder="57" id="jumlah" name="jumlah" required value="<?= $detail['jumlah'] ?>">
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label title="Notifikasi jumlah barang menipis">Jumlah Warning</label>
+                                        <?php if (!$edited) { ?>
+                                            <input type="number" class="form-control border-input" placeholder="100" id="warning" name="warning" value="100">
+                                        <?php } else { ?>
+                                            <input type="number" class="form-control border-input" placeholder="100" id="warning" name="warning" value="<?= $detail['warning'] ?>">
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Warna</label>
+                                        <?php if (!$edited) { ?>
+                                            <input type="text" class="form-control border-input" placeholder="Biru" id="warna" name="warna">
+                                        <?php } else { ?>
+                                            <input type="text" class="form-control border-input" placeholder="Biru" id="warna" name="warna" value="<?= $detail['warna'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>

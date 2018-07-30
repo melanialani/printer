@@ -67,37 +67,37 @@
                 <li>
                     <a href="<?= site_url('user'); ?>">
                         <i class="ti-user"></i>
-                        <p>Users Management</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= site_url('referensi'); ?>">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Referensi</p>
+                        <p>Master User</p>
                     </a>
                 </li>
                 <li>
                     <a href="<?= site_url('barang'); ?>">
                         <i class="ti-archive"></i>
-                        <p>Product Management</p>
+                        <p>Master Barang</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="<?= site_url('jeniskertas'); ?>">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Master Jenis Kertas</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= site_url('ukurankertas'); ?>">
                         <i class="ti-files"></i>
-                        <p>Upload File</p>
+                        <p>Master Ukuran Kertas</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="<?= site_url('plate'); ?>">
                         <i class="ti-receipt"></i>
-                        <p>History</p>
+                        <p>Master Plate</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="<?= site_url('jeniscetak'); ?>">
                         <i class="ti-email"></i>
-                        <p>Messages</p>
+                        <p>Jenis Cetakan</p>
                     </a>
                 </li>
             </ul>

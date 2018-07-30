@@ -25,7 +25,7 @@ class JenisKertas extends CI_Controller {
 		$data['barang'] = $this->MBarang->getAll();
 
 		if ($this->input->post('button') == 'save'){
-			$result = $this->MJenisKertas->insert($this->input->post('id_barang'),$this->input->post('nama'));
+			$result = $this->MJenisKertas->insert($this->input->post('barang'),$this->input->post('nama'));
 			if ($result)
 				redirect('jeniskertas');
 		}
@@ -45,7 +45,7 @@ class JenisKertas extends CI_Controller {
 		$data['detail'] = $detail[0];
 
 		if ($this->input->post('button') == 'save'){
-			$result = $this->MJenisKertas->update($id,$this->input->post('id_barang'),$this->input->post('nama'));
+			$result = $this->MJenisKertas->update($id,$this->input->post('barang'),$this->input->post('nama'));
 			if ($result)
 				redirect('jeniskertas');
 		}

@@ -137,7 +137,7 @@ $autoload['model'] = array(
 	'Barang_model' => 'MBarang', 
 	'User_model' => 'MUser',
 	'JenisKertas_model' => 'MJenisKertas',
-	'JenisCetakan_model' => 'MJenisCetakan',
+	'JenisCetak_model' => 'MJenisCetak',
 	'UkuranKertas_model' => 'MUkuranKertas',
 	'Plate_model' => 'MPlate'
 );

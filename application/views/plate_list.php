@@ -16,7 +16,6 @@
                         <table id="myTable" class="table table-striped">
                             <thead><tr>
                                 <th>ID</th>
-                                <th>Nama</th>
                                 <th>Panjang x Lebar</th>
                                 <th></th>
                             </tr></thead>

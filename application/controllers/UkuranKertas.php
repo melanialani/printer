@@ -25,7 +25,7 @@ class UkuranKertas extends CI_Controller {
 		$data['barang'] = $this->MBarang->getAll();
 
 		if ($this->input->post('button') == 'save'){
-			$result = $this->MUkuranKertas->insert($this->input->post('id_barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
+			$result = $this->MUkuranKertas->insert($this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
 			if ($result)
 				redirect('ukurankertas');
 		}
@@ -45,7 +45,7 @@ class UkuranKertas extends CI_Controller {
 		$data['detail'] = $detail[0];
 
 		if ($this->input->post('button') == 'save'){
-			$result = $this->MUkuranKertas->update($id,$this->input->post('id_barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
+			$result = $this->MUkuranKertas->update($id,$this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
 			if ($result)
 				redirect('ukurankertas');
 		}

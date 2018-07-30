@@ -10,7 +10,7 @@
                         <?php if (!$edited) { ?>
                             <?= form_open('jeniscetak/add'); ?>
                         <?php } else { ?>
-                            <?= form_open('jeniscetak/edit/'.$detail['id_master_plate']); ?>
+                            <?= form_open('jeniscetak/edit/'.$detail['id_jenis_cetakan']); ?>
                         <?php } ?>
                             <div class="row">
                                 <div class="col-md-6">

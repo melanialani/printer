@@ -25,7 +25,7 @@ class User extends CI_Controller {
 		$data['role'] = $this->MUser->getUserRole();
 
 		if ($this->input->post('button') == 'save'){
-			$result = $this->MUser->insert($this->input->post('nama'),$this->input->post('username'),$this->input->post('password'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
+			$result = $this->MUser->insert($this->input->post('username'),$this->input->post('password'),$this->input->post('nama'),$this->input->post('alamat'),$this->input->post('hp'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
 			if ($result)
 				redirect('user');
 		}
@@ -45,7 +45,7 @@ class User extends CI_Controller {
 		$data['detail'] = $detail[0];
 
 		if ($this->input->post('button') == 'save'){
-			$result = $this->MUser->update($id,$this->input->post('nama'),$this->input->post('username'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
+			$result = $this->MUser->update($id,$this->input->post('username'),$this->input->post('password'),$this->input->post('nama'),$this->input->post('alamat'),$this->input->post('hp'),$this->input->post('email'),NULL,$this->input->post('role'),TRUE);
 			if ($result)
 				redirect('user');
 		}
