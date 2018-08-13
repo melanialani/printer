@@ -58,48 +58,76 @@
             </div>
 
             <ul class="nav">
-                <li>
-                    <a href="<?= site_url('login/dashboard'); ?>">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= site_url('user'); ?>">
-                        <i class="ti-user"></i>
-                        <p>Master User</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= site_url('barang'); ?>">
-                        <i class="ti-archive"></i>
-                        <p>Master Barang</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= site_url('jeniskertas'); ?>">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Master Jenis Kertas</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= site_url('ukurankertas'); ?>">
-                        <i class="ti-files"></i>
-                        <p>Master Ukuran Kertas</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= site_url('plate'); ?>">
-                        <i class="ti-receipt"></i>
-                        <p>Master Plate</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?= site_url('jeniscetak'); ?>">
-                        <i class="ti-email"></i>
-                        <p>Jenis Cetakan</p>
-                    </a>
-                </li>
+                <?php if (!empty($_SESSION['printer']['user']) && $_SESSION['printer']['user']['role'] == 0){ ?>
+                    <li>
+                        <a href="<?= site_url('login/dashboard'); ?>">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('user'); ?>">
+                            <i class="ti-user"></i>
+                            <p>Master User</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('barang'); ?>">
+                            <i class="ti-archive"></i>
+                            <p>Master Barang</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('jeniskertas'); ?>">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Master Jenis Kertas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('ukurankertas'); ?>">
+                            <i class="ti-files"></i>
+                            <p>Master Ukuran Kertas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('plate'); ?>">
+                            <i class="ti-receipt"></i>
+                            <p>Master Plate</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('jeniscetak'); ?>">
+                            <i class="ti-email"></i>
+                            <p>Jenis Cetakan</p>
+                        </a>
+                    </li>
+                <?php } else if (!empty($_SESSION['printer']['user']) && $_SESSION['printer']['user']['role'] == 1) { ?>
+                    <li>
+                        <a href="<?= site_url('login/dashboard'); ?>">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('jeniscetak'); ?>">
+                            <i class="ti-email"></i>
+                            <p>Daftar Pesanan</p>
+                        </a>
+                    </li>
+                <?php } else if (!empty($_SESSION['printer']['user']) && $_SESSION['printer']['user']['role'] == 2) { ?>
+                    <li>
+                        <a href="<?= site_url('login/dashboard'); ?>">
+                            <i class="ti-panel"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('jeniscetak'); ?>">
+                            <i class="ti-email"></i>
+                            <p>Upload Pesanan</p>
+                        </a>
+                    </li>
+                <?php } ?>
             </ul>
             
         </div>
@@ -124,12 +152,12 @@
                                 <p>Hello, <?= !empty($_SESSION['printer']['user']['nama']) ? $_SESSION['printer']['user']['nama'] : 'Guest'; ?></p>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">
                                 <i class="ti-search"></i>
                                 <p>Search</p>
                             </a>
-                        </li>
+                        </li> -->
                         <?php if (!empty($_SESSION['printer']['user'])) { ?>
                         <li>
                             <a href="<?= site_url('login/logout'); ?>">
