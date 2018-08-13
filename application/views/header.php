@@ -120,18 +120,28 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
+                            <a>
+                                <p>Hello, <?= !empty($_SESSION['printer']['user']['nama']) ? $_SESSION['printer']['user']['nama'] : 'Guest'; ?></p>
+                            </a>
+                        </li>
+                        <li>
                             <a href="#">
                                 <i class="ti-search"></i>
                                 <p>Search</p>
                             </a>
                         </li>
-                        <?php if (!empty($_SESSION['printer']['loggedin'])) { ?>
+                        <?php if (!empty($_SESSION['printer']['user'])) { ?>
                         <li>
                             <a href="<?= site_url('login/logout'); ?>">
                                 <p>Logout</p>
                             </a>
                         </li>
                         <?php } else { ?>
+                        <li>
+                            <a href="<?= site_url('login/register_user'); ?>">
+                                <p>Register</p>
+                            </a>
+                        </li>
                         <li>
                             <a href="<?= site_url('login'); ?>">
                                 <p>Login</p>

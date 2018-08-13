@@ -31,10 +31,15 @@ class User_model extends CI_Model {
 		return $this->db->get('user')->result_array();
 	}
 
+	public function getRegister($email,$username) {
+		$sql = "SELECT * FROM user WHERE email = ? OR username = ?";
+		return $this->db->query($sql, array($email, $username))->result_array();
+	}
+
 	public function getLogin($username,$password) {
 		$this->db->where('username', $username);
 		$this->db->where('password', md5($password));
-		return $this->db->get('user')->result_array();
+		return $this->db->get('user')->row_array();
 	}
 
 	public function getOne($id) {
@@ -51,7 +56,7 @@ class User_model extends CI_Model {
 			'email' => $email,
 			'photo' => $photo,
 			'username' => $username,
-			'password' => $password,
+			'password' => md5($password),
 			'role' => $role,
 			'is_active' => $is_active
 		);
@@ -67,7 +72,7 @@ class User_model extends CI_Model {
 			'email' => $email,
 			'photo' => $photo,
 			'username' => $username,
-			'password' => $password,
+			'password' => md5($password),
 			'role' => $role,
 			'is_active' => $is_active
 		);
@@ -84,5 +89,16 @@ class User_model extends CI_Model {
 	public function delete($id) {
 		$this->db->where('id_user', $id);
 		return $this->db->delete('user');
+	}
+
+	public function registerUser($email,$username,$password) {
+		$record = array(
+			'email' => $email,
+			'username' => $username,
+			'password' => md5($password),
+			'role' => 2, // default: customer
+			'is_active' => 1 // default: always active
+		);
+		return $this->db->insert('user', $record);
 	}
 }
