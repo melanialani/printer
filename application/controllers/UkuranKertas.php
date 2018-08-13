@@ -8,55 +8,71 @@ class UkuranKertas extends CI_Controller {
 	}
 
 	public function lst() {
-		$data['page_title'] = 'List Ukuran Kertas';
-		$data['page_note'] = 'Daftar seluruh barang dan ukuran kertasnya';
+		if ($_SESSION['printer']['user']['role'] == 0){
+			$data['page_title'] = 'List Ukuran Kertas';
+			$data['page_note'] = 'Daftar seluruh barang dan ukuran kertasnya';
 
-		$data['row'] = $this->MUkuranKertas->getAllWithParent();
+			$data['row'] = $this->MUkuranKertas->getAllWithParent();
 
-		$this->load->view('header', $data);
-		$this->load->view('ukurankertas_list', $data);
-		$this->load->view('footer', $data);
+			$this->load->view('header', $data);
+			$this->load->view('ukurankertas_list', $data);
+			$this->load->view('footer', $data);
+		} else {
+			redirect('login');
+		}
 	}
 
 	public function add() {
-		$data['page_title'] = 'Tambah Ukuran Kertas Baru';
-		$data['edited'] = false;
+		if ($_SESSION['printer']['user']['role'] == 0){
+			$data['page_title'] = 'Tambah Ukuran Kertas Baru';
+			$data['edited'] = false;
 
-		$data['barang'] = $this->MBarang->getAll();
+			$data['barang'] = $this->MBarang->getAll();
 
-		if ($this->input->post('button') == 'save'){
-			$result = $this->MUkuranKertas->insert($this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
-			if ($result)
-				redirect('ukurankertas');
+			if ($this->input->post('button') == 'save'){
+				$result = $this->MUkuranKertas->insert($this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
+				if ($result)
+					redirect('ukurankertas');
+			}
+
+			$this->load->view('header', $data);
+			$this->load->view('ukurankertas_edit', $data);
+			$this->load->view('footer', $data);
+		} else {
+			redirect('login');
 		}
-
-		$this->load->view('header', $data);
-		$this->load->view('ukurankertas_edit', $data);
-		$this->load->view('footer', $data);
 	}
 
 	public function edit($id) {
-		$data['page_title'] = 'Edit Ukuran Kertas';
-		$data['edited'] = true;
+		if ($_SESSION['printer']['user']['role'] == 0){
+			$data['page_title'] = 'Edit Ukuran Kertas';
+			$data['edited'] = true;
 
-		$data['barang'] = $this->MBarang->getAll();
+			$data['barang'] = $this->MBarang->getAll();
 
-		$detail = $this->MUkuranKertas->getOne($id);
-		$data['detail'] = $detail[0];
+			$detail = $this->MUkuranKertas->getOne($id);
+			$data['detail'] = $detail[0];
 
-		if ($this->input->post('button') == 'save'){
-			$result = $this->MUkuranKertas->update($id,$this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
-			if ($result)
-				redirect('ukurankertas');
+			if ($this->input->post('button') == 'save'){
+				$result = $this->MUkuranKertas->update($id,$this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
+				if ($result)
+					redirect('ukurankertas');
+			}
+
+			$this->load->view('header', $data);
+			$this->load->view('ukurankertas_edit', $data);
+			$this->load->view('footer', $data);
+		} else {
+			redirect('login');
 		}
-
-		$this->load->view('header', $data);
-		$this->load->view('ukurankertas_edit', $data);
-		$this->load->view('footer', $data);
 	}
 
 	public function delete($id) {
-		$result = $this->MUkuranKertas->delete($id);
-		if ($result) redirect('ukurankertas');
+		if ($_SESSION['printer']['user']['role'] == 0){
+			$result = $this->MUkuranKertas->delete($id);
+			if ($result) redirect('ukurankertas');
+		} else {
+			redirect('login');
+		}
 	}
 }
