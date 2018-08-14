@@ -53,4 +53,10 @@ class Barang_model extends CI_Model {
 		$this->db->where('id_barang', $id);
 		return $this->db->delete('barang');
 	}
+
+	public function getAllWarna() {
+		$this->db->select('warna');
+		$this->db->group_by('warna');
+		return $this->db->get('barang')->result_array();
+	}
 }

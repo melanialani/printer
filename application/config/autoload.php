@@ -134,10 +134,13 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
 	'Referensi_model' => 'MReferensi', 
+	
 	'Barang_model' => 'MBarang', 
-	'User_model' => 'MUser',
-	'JenisKertas_model' => 'MJenisKertas',
 	'JenisCetak_model' => 'MJenisCetak',
+	'JenisKertas_model' => 'MJenisKertas',
+	'Laminasi_model' => 'MLaminasi',
+	'Plate_model' => 'MPlate',
+	'Proses_model' => 'MProses',
 	'UkuranKertas_model' => 'MUkuranKertas',
-	'Plate_model' => 'MPlate'
+	'User_model' => 'MUser'
 );
