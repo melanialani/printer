@@ -7,6 +7,24 @@ class JenisCetak extends CI_Controller {
 		$this->lst();
 	}
 
+	public function test() {
+		if ($_SESSION['printer']['user']['role'] == 0){
+			$data['page_title'] = 'Buat Pesanan Baru';
+			$data['page_note'] = 'Membuat pesanan cetakan baru';
+
+			$data['edited'] = false;
+
+			$data['warna'] = $this->MBarang->getAllWarna();
+			$data['jenis_cetakan'] = $this->MJenisCetak->getAll();
+
+			$this->load->view('header', $data);
+			$this->load->view('order_add', $data);
+			$this->load->view('footer', $data);
+		} else {
+			redirect('login');
+		}
+	}
+
 	public function lst() {
 		if ($_SESSION['printer']['user']['role'] == 0){
 			$data['page_title'] = 'List Jenis Cetakan';
