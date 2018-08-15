@@ -79,25 +79,25 @@
                     </li>
                     <li>
                         <a href="<?= site_url('jeniskertas'); ?>">
-                            <i class="ti-view-list-alt"></i>
+                            <i class="ti-receipt"></i>
                             <p>Master Jenis Kertas</p>
                         </a>
                     </li>
                     <li>
                         <a href="<?= site_url('ukurankertas'); ?>">
-                            <i class="ti-files"></i>
+                            <i class="ti-layout"></i>
                             <p>Master Ukuran Kertas</p>
                         </a>
                     </li>
                     <li>
                         <a href="<?= site_url('plate'); ?>">
-                            <i class="ti-receipt"></i>
+                            <i class="ti-layers"></i>
                             <p>Master Plate</p>
                         </a>
                     </li>
                     <li>
                         <a href="<?= site_url('jeniscetak'); ?>">
-                            <i class="ti-email"></i>
+                            <i class="ti-view-list-alt"></i>
                             <p>Jenis Cetakan</p>
                         </a>
                     </li>
@@ -110,7 +110,7 @@
                     </li>
                     <li>
                         <a href="<?= site_url('jeniscetak'); ?>">
-                            <i class="ti-email"></i>
+                            <i class="ti-view-list-alt"></i>
                             <p>Daftar Pesanan</p>
                         </a>
                     </li>
@@ -121,16 +121,22 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="<?= site_url('search'); ?>">
                             <i class="ti-search"></i>
                             <p>Search</p>
                         </a>
+                    </li> -->
+                    <li>
+                        <a href="<?= site_url('order'); ?>">
+                            <i class="ti-support"></i>
+                            <p>Pesanan Baru</p>
+                        </a>
                     </li>
                     <li>
-                        <a href="<?= site_url('jeniscetak'); ?>">
-                            <i class="ti-email"></i>
-                            <p>Upload Pesanan</p>
+                        <a href="<?= site_url('order/lst'); ?>">
+                            <i class="ti-receipt"></i>
+                            <p>History Pesanan</p>
                         </a>
                     </li>
                 <?php } ?>
