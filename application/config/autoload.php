@@ -136,6 +136,7 @@ $autoload['model'] = array(
 	'Referensi_model' => 'MReferensi', 
 	
 	'Barang_model' => 'MBarang', 
+	'JenisBarang_model' => 'MJenisBarang',
 	'JenisCetak_model' => 'MJenisCetak',
 	'JenisKertas_model' => 'MJenisKertas',
 	'Laminasi_model' => 'MLaminasi',

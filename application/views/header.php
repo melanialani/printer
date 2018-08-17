@@ -74,13 +74,19 @@
                     <li>
                         <a href="<?= site_url('barang'); ?>">
                             <i class="ti-archive"></i>
-                            <p>Master Barang</p>
+                            <p>Master Varian</p>
                         </a>
                     </li>
                     <li>
                         <a href="<?= site_url('jeniskertas'); ?>">
                             <i class="ti-receipt"></i>
                             <p>Master Jenis Kertas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('jenisbarang'); ?>">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Master Jenis Barang</p>
                         </a>
                     </li>
                     <li>
@@ -99,6 +105,12 @@
                         <a href="<?= site_url('jeniscetak'); ?>">
                             <i class="ti-view-list-alt"></i>
                             <p>Jenis Cetakan</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('historybarang'); ?>">
+                            <i class="ti-receipt"></i>
+                            <p>Stok Opname</p>
                         </a>
                     </li>
                 <?php } else if (!empty($_SESSION['printer']['user']) && $_SESSION['printer']['user']['role'] == 1) { ?>
