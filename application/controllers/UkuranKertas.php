@@ -12,7 +12,7 @@ class UkuranKertas extends CI_Controller {
 			$data['page_title'] = 'List Ukuran Kertas';
 			$data['page_note'] = 'Daftar seluruh barang dan ukuran kertasnya';
 
-			$data['row'] = $this->MUkuranKertas->getAllWithParent();
+			$data['row'] = $this->MUkuranKertas->getAll();
 
 			$this->load->view('header', $data);
 			$this->load->view('ukurankertas_list', $data);
@@ -30,7 +30,7 @@ class UkuranKertas extends CI_Controller {
 			$data['barang'] = $this->MBarang->getAll();
 
 			if ($this->input->post('button') == 'save'){
-				$result = $this->MUkuranKertas->insert($this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
+				$result = $this->MUkuranKertas->insert($this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
 				if ($result)
 					redirect('ukurankertas');
 			}
@@ -54,7 +54,7 @@ class UkuranKertas extends CI_Controller {
 			$data['detail'] = $detail[0];
 
 			if ($this->input->post('button') == 'save'){
-				$result = $this->MUkuranKertas->update($id,$this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
+				$result = $this->MUkuranKertas->update($id,$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
 				if ($result)
 					redirect('ukurankertas');
 			}

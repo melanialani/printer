@@ -13,30 +13,6 @@
                             <?= form_open('ukurankertas/edit/'.$detail['id_ukuran_kertas']); ?>
                         <?php } ?>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>ID Barang</label>
-                                        <?php if (!$edited) { ?>
-                                            <select name="barang" id="barang" class="form-control border-input" required>
-                                            <?php foreach ($barang as $value) {
-                                                    echo "<option value='". $value['id_barang'] . "'>" . $value['nama_barang'] . "</option>";
-                                                } ?>
-                                            </select>
-                                        <?php } else { ?>
-                                            <select name="barang" id="barang" class="form-control border-input" required>
-                                            <?php foreach ($barang as $value) {
-                                                if ( $value['id_barang'] == $detail['id_barang'])
-                                                    echo "<option value='". $value['id_barang'] . "' selected>" . $value['nama_barang'] . "</option>";
-                                                else 
-                                                    echo "<option value='". $value['id_barang'] . "'>" . $value['nama_barang'] . "</option>";
-                                                } ?>
-                                            </select>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- ID & NAME -->
                             <div class="row">
                                 <div class="col-md-6">

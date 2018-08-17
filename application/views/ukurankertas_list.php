@@ -13,21 +13,15 @@
                     <div class="content table-responsive">
                         <table id="myTable" class="table table-striped">
                             <thead><tr>
-                                <th>ID Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Warna</th>
                                 <th>ID Ukuran Kertas</th>
                                 <th>Nama Ukuran Kertas</th>
-                                <th>Panjang x Lebar</th>
+                                <th>Panjang x Lebar Kertas</th>
                                 <th></th>
                             </tr></thead>
                             <tbody>
                                 <?php foreach ($row as $key => $value) {
                                     ?>
                                     <tr>
-                                        <td><?= $value['id_barang']; ?></td>
-                                        <td><?= $value['nama_barang']; ?></td>
-                                        <td><?= $value['warna']; ?></td>
                                         <td><?= $value['id_ukuran_kertas']; ?></td>
                                         <td><?= $value['nama_ukuran_kertas']; ?></td>
                                         <td><?= $value['panjang_kertas'].' x '.$value['lebar_kertas']; ?></td>
