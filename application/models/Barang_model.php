@@ -8,7 +8,7 @@ class Barang_model extends CI_Model {
 		parent::__construct();
 		$this->load->database();
 	}
-
+#region table barang
 	public function getAll() {
 		return $this->db->get('varian')->result_array();
 	}
@@ -73,4 +73,40 @@ class Barang_model extends CI_Model {
 		$this->db->group_by('warna');
 		return $this->db->get('varian')->result_array();
 	}
+#endregion
+
+#region table history barang
+	public function getAllHistory() {
+		$this->db->from('history h, varian b');
+		$this->db->where('h.id_varian = b.id_varian');
+		$this->db->order_by('h.tanggal', 'desc');
+		return $this->db->get()->result_array();
+	}
+
+	public function getAllHistoryByIdBarang($id_barang) {
+		$this->db->where('id_varian', $id_barang);
+		$this->db->order_by('tanggal', 'desc');
+		return $this->db->get('history')->result_array();
+	}
+
+	public function getOneHistory($id) {
+		$this->db->where('id_history', $id);
+		return $this->db->get('history')->result_array();
+	}
+
+	public function insertHistoryBarang($id_barang,$deskripsi) {
+		$record = array(
+			// 'id_history' => $id, // auto-increment
+			'id_varian' => $id_barang,
+			'tanggal' => date('Y-m-d H:i:s'),
+			'deskripsi' => $deskripsi
+		);
+		return $this->db->insert('history', $record);
+	}
+
+	public function deleteHistoryBarang($id) {
+		$this->db->where('id_history', $id);
+		return $this->db->delete('history');
+	}
+#endregion
 }
