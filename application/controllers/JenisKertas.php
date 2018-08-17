@@ -10,9 +10,9 @@ class JenisKertas extends CI_Controller {
 	public function lst() {
 		if ($_SESSION['printer']['user']['role'] == 0){
 			$data['page_title'] = 'List Jenis Kertas';
-			$data['page_note'] = 'Daftar seluruh barang dan jenis-jenis kertasnya';
+			$data['page_note'] = 'Daftar seluruh jenis kertas';
 
-			$data['row'] = $this->MJenisKertas->getAllWithParent();
+			$data['row'] = $this->MJenisKertas->getAll();
 
 			$this->load->view('header', $data);
 			$this->load->view('jeniskertas_list', $data);
@@ -30,7 +30,7 @@ class JenisKertas extends CI_Controller {
 			$data['barang'] = $this->MBarang->getAll();
 
 			if ($this->input->post('button') == 'save'){
-				$result = $this->MJenisKertas->insert($this->input->post('barang'),$this->input->post('nama'));
+				$result = $this->MJenisKertas->insert($this->input->post('nama'));
 				if ($result)
 					redirect('jeniskertas');
 			}
@@ -54,7 +54,7 @@ class JenisKertas extends CI_Controller {
 			$data['detail'] = $detail[0];
 
 			if ($this->input->post('button') == 'save'){
-				$result = $this->MJenisKertas->update($id,$this->input->post('barang'),$this->input->post('nama'));
+				$result = $this->MJenisKertas->update($id,$this->input->post('nama'));
 				if ($result)
 					redirect('jeniskertas');
 			}

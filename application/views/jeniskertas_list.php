@@ -13,9 +13,6 @@
                     <div class="content table-responsive">
                         <table id="myTable" class="table table-striped">
                             <thead><tr>
-                                <th>ID Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Warna</th>
                                 <th>ID Jenis Kertas</th>
                                 <th>Nama Jenis Kertas</th>
                                 <th></th>
@@ -24,9 +21,6 @@
                                 <?php foreach ($row as $key => $value) {
                                     ?>
                                     <tr>
-                                        <td><?= $value['id_barang']; ?></td>
-                                        <td><?= $value['nama_barang']; ?></td>
-                                        <td><?= $value['warna']; ?></td>
                                         <td><?= $value['id_jenis_kertas']; ?></td>
                                         <td><?= $value['namajenis_kertas']; ?></td>
                                         <td align="center">
