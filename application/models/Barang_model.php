@@ -59,7 +59,7 @@ class Barang_model extends CI_Model {
 			'harga_jual' => $jual,
 			'warning' => $warning
 		);
-		$this->db->where('id_barang', $id);
+		$this->db->where('id_varian', $id);
 		return $this->db->update('varian', $record);
 	}
 

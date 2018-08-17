@@ -38,11 +38,11 @@
                                         <td><?= $value['nama_varian']; ?></td>
                                         <td><?= $value['warna']; ?></td>
                                         <td><?= $value['jumlah']; ?></td>
-                                        <td><?= number_format($value['harga_beli']); ?></td>
-                                        <td><?= number_format($value['harga_jual']); ?></td>
                                         <td><?= $value['stock_awal']; ?></td>
                                         <td><?= $value['stock']; ?></td>
                                         <td><?= $value['warning']; ?></td>
+                                        <td><?= number_format($value['harga_beli']); ?></td>
+                                        <td><?= number_format($value['harga_jual']); ?></td>
                                         <td align="center">
                                             <a href="<?= site_url('barang/edit/'.$value['id_varian']); ?>" class="btn btn-waning btn-xs"><span class="ti-pencil" title="Edit"></span></a>
                                             <!-- <span class="icon-name"> Edit</span> -->

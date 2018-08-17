@@ -13,19 +13,9 @@
                             <?= form_open('barang/edit/'.$detail['id_varian']); ?>
                         <?php } ?>
 
-                            <!-- ID & NAME -->
+                            <!-- NAME -->
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>ID Barang</label>
-                                        <?php if (!$edited) { ?>
-                                            <input type="text" class="form-control border-input" placeholder="Automatically Generated" id="id" name="id" required disabled>
-                                        <?php } else { ?>
-                                            <input type="text" class="form-control border-input" placeholder="Automatically Generated" id="id" name="id" required disabled value="<?= $detail['id_varian'] ?>">
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Nama Barang</label>
                                         <?php if (!$edited) { ?>
@@ -87,16 +77,16 @@
                                         <?php if (!$edited) { ?>
                                             <select name="ukuran_kertas" id="ukuran_kertas" class="form-control border-input">
                                             <?php foreach ($ukuran_kertas as $value) {
-                                                    echo "<option value='". $value['id_ukuran_kertas'] . "'>" . $value['nama_ukuran_kertas'] . ' - ' . $value['panjang_kertas'] . 'x' . $value['lebar_kertas'] . "</option>";
+                                                    echo "<option value='". $value['id_ukuran_kertas'] . "'>" . $value['nama_ukuran_kertas'] . "</option>";
                                                 } ?>
                                             </select>
                                         <?php } else { ?>
                                             <select name="ukuran_kertas" id="ukuran_kertas" class="form-control border-input">
                                             <?php foreach ($ukuran_kertas as $value) {
                                                 if ( $value['id_ukuran_kertas'] == $detail['id_ukuran_kertas'])
-                                                    echo "<option value='". $value['id_ukuran_kertas'] . "' selected>" . $value['nama_ukuran_kertas'] . ' - ' . $value['panjang_kertas'] . 'x' . $value['lebar_kertas'] . "</option>";
+                                                    echo "<option value='". $value['id_ukuran_kertas'] . "' selected>" . $value['nama_ukuran_kertas'] . "</option>";
                                                 else 
-                                                    echo "<option value='". $value['id_ukuran_kertas'] . "'>" . $value['nama_ukuran_kertas'] . ' - ' . $value['panjang_kertas'] . 'x' . $value['lebar_kertas'] . "</option>";
+                                                    echo "<option value='". $value['id_ukuran_kertas'] . "'>" . $value['nama_ukuran_kertas'] . "</option>";
                                                 } ?>
                                             </select>
                                         <?php } ?>
@@ -180,7 +170,7 @@
                                         <?php if (!$edited) { ?>
                                             <input type="number" class="form-control border-input" placeholder="1500" id="jual" name="jual" required>
                                         <?php } else { ?>
-                                            <input type="number" class="form-control border-input" placeholder="1500" id="jual" name="jual" required disabled value="<?= $detail['harga_jual'] ?>">
+                                            <input type="number" class="form-control border-input" placeholder="1500" id="jual" name="jual" required value="<?= $detail['harga_jual'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>

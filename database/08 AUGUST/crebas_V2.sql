@@ -221,7 +221,7 @@ create table user
 /*==============================================================*/
 create table varian
 (
-   id_varian            int not null,
+   id_varian            int not null auto_increment,
    id_jenis_barang      int not null,
    id_ukuran_kertas     int,
    id_jenis_kertas      int,
@@ -232,6 +232,7 @@ create table varian
    warna                varchar(100),
    harga_beli           int,
    harga_jual           int,
+   warning              int not null default '100',
    primary key (id_varian)
 );
 
@@ -287,8 +288,31 @@ alter table varian add constraint fk_varian_ukuran_kertas foreign key (id_ukuran
       references ukuran_kertas (id_ukuran_kertas) on delete restrict on update restrict;
 
 --
--- Dumping data for table `user`
+-- Dumping data for tables
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `alamat_user`, `no_hp`, `email`, `photo`, `username`, `password`, `role`, `is_active`) VALUES
-(1, 'Administrator', 'Alamat Lengkap Admin', '081234567890', 'admin@mail.com', NULL, 'admin', '21232f297a57a5a743894a0e4a801fc3', 0, 1);
+(1, 'Administrator', 'Alamat Lengkap Admin', '081234567890', 'admin@mail.com', NULL, 'admin', '21232f297a57a5a743894a0e4a801fc3', 0, 1),
+(2, 'Mary Jane', '', '', 'maryjane@gmail.com', NULL, 'mary', '5844a15e76563fedd11840fd6f40ea7b', 1, 1);
+
+INSERT INTO `jenis_barang` (`id_jenis_barang`, `nama_jenis_barang`) VALUES
+(1, 'Kertas'),
+(2, 'Tinta');
+
+INSERT INTO `jenis_cetakan` (`id_jenis_cetakan`, `nama_jenis_cetakan`) VALUES
+(1, 'Undangan'),
+(2, 'Brosur');
+
+INSERT INTO `jenis_kertas` (`id_jenis_kertas`, `namajenis_kertas`) VALUES
+(0, 'Tanpa jenis kertas'),
+(1, 'Glossy'),
+(2, 'Dove');
+
+INSERT INTO `master_plate` (`id_master_plate`, `panjang_plate`, `lebar_plate`) VALUES
+(1, 30, 20),
+(2, 50, 50);
+
+INSERT INTO `ukuran_kertas` (`id_ukuran_kertas`, `nama_ukuran_kertas`, `panjang_kertas`, `lebar_kertas`) VALUES
+(0, 'Tanpa ukuran kertas', 0, 0),
+(1, 'Ukuran A4', 110, 75),
+(2, 'Ukuran A5', 75, 50);

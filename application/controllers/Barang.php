@@ -28,8 +28,8 @@ class Barang extends CI_Controller {
 			$data['edited'] = false;
 
 			$data['jenis_barang'] = $this->MJenisBarang->getAll();
-			$data['jenis_kertas'] = $this->MJenisKertas->getAll();
-			$data['ukuran_kertas'] = $this->MUkuranKertas->getAll();
+			$data['jenis_kertas'] = $this->MJenisKertas->getCombo();
+			$data['ukuran_kertas'] = $this->MUkuranKertas->getCombo();
 
 			if ($this->input->post('button') == 'save'){
 				$result = $this->MBarang->insert($this->input->post('jenis_barang'),$this->input->post('ukuran_kertas'),$this->input->post('jenis_kertas'),$this->input->post('nama'),$this->input->post('jumlah'),$this->input->post('stock_awal'),$this->input->post('stock'),$this->input->post('warna'),$this->input->post('beli'),$this->input->post('jual'),$this->input->post('warning'));
@@ -51,14 +51,14 @@ class Barang extends CI_Controller {
 			$data['edited'] = true;
 
 			$data['jenis_barang'] = $this->MJenisBarang->getAll();
-			$data['jenis_kertas'] = $this->MJenisKertas->getAll();
-			$data['ukuran_kertas'] = $this->MUkuranKertas->getAll();
+			$data['jenis_kertas'] = $this->MJenisKertas->getCombo();
+			$data['ukuran_kertas'] = $this->MUkuranKertas->getCombo();
 
 			$detail = $this->MBarang->getOne($id);
 			$data['detail'] = $detail[0];
 
 			if ($this->input->post('button') == 'save'){
-				$result = $this->MBarang->update($this->input->post('jenis_barang'),$this->input->post('ukuran_kertas'),$this->input->post('jenis_kertas'),$this->input->post('nama'),$this->input->post('jumlah'),$this->input->post('stock_awal'),$this->input->post('stock'),$this->input->post('warna'),$this->input->post('beli'),$this->input->post('jual'),$this->input->post('warning'));
+				$result = $this->MBarang->update($id,$this->input->post('jenis_barang'),$this->input->post('ukuran_kertas'),$this->input->post('jenis_kertas'),$this->input->post('nama'),$this->input->post('jumlah'),$this->input->post('stock_awal'),$this->input->post('stock'),$this->input->post('warna'),$this->input->post('beli'),$this->input->post('jual'),$this->input->post('warning'));
 				if ($result)
 					redirect('barang');
 			}

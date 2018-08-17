@@ -9,7 +9,12 @@ class JenisKertas_model extends CI_Model {
 		$this->load->database();
 	}
 
+	public function getCombo() {
+		return $this->db->get('jenis_kertas')->result_array();
+	}
+
 	public function getAll() {
+		$this->db->where('id_jenis_kertas <> 0');
 		return $this->db->get('jenis_kertas')->result_array();
 	}
 
