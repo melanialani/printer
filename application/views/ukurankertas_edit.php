@@ -13,19 +13,9 @@
                             <?= form_open('ukurankertas/edit/'.$detail['id_ukuran_kertas']); ?>
                         <?php } ?>
 
-                            <!-- ID & NAME -->
+                            <!-- NAME -->
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>ID Ukuran Kertas</label>
-                                        <?php if (!$edited) { ?>
-                                            <input type="text" class="form-control border-input" placeholder="Automatically Generated" id="id" name="id" disabled>
-                                        <?php } else { ?>
-                                            <input type="text" class="form-control border-input" placeholder="Automatically Generated" id="id" name="id" required disabled value="<?= $detail['id_ukuran_kertas'] ?>">
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Nama Ukuran Kertas</label>
                                         <?php if (!$edited) { ?>

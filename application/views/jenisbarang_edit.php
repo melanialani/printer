@@ -13,17 +13,7 @@
                             <?= form_open('jenisbarang/edit/'.$detail['id_jenis_barang']); ?>
                         <?php } ?>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>ID Jenis Barang</label>
-                                        <?php if (!$edited) { ?>
-                                            <input type="text" class="form-control border-input" placeholder="ID Jenis Barang" id="id" name="id" disabled>
-                                        <?php } else { ?>
-                                            <input type="text" class="form-control border-input" placeholder="ID Jenis Barang" id="id" name="id" required disabled value="<?= $detail['id_jenis_barang'] ?>">
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Nama Jenis Barang</label>
                                         <?php if (!$edited) { ?>

@@ -10,53 +10,67 @@ class Barang_model extends CI_Model {
 	}
 
 	public function getAll() {
-		return $this->db->get('barang')->result_array();
+		return $this->db->get('varian')->result_array();
+	}
+
+	public function getAllWithParent() {
+		$this->db->from('varian v, jenis_barang jb, ukuran_kertas uk, jenis_kertas jk');
+		$this->db->where('v.id_jenis_barang = jb.id_jenis_barang');
+		$this->db->where('v.id_ukuran_kertas = uk.id_ukuran_kertas');
+		$this->db->where('v.id_jenis_kertas = jk.id_jenis_kertas');
+		$this->db->order_by('v.id_varian', 'asc');
+		return $this->db->get()->result_array();
 	}
 
 	public function getOne($id) {
-		$this->db->where('id_barang', $id);
-		return $this->db->get('barang')->result_array();
+		$this->db->where('id_varian', $id);
+		return $this->db->get('varian')->result_array();
 	}
 
-	public function insert($nama,$jumlah,$beli,$jual,$stock_awal,$stock,$warna,$warning) {
+	public function insert($id_jenis_barang,$id_ukuran_kertas,$id_jenis_kertas,$nama,$jumlah,$stock_awal,$stock,$warna,$beli,$jual,$warning) {
 		$record = array(
-			// 'id_barang' => $id, // auto-increment
-			'nama_barang' => $nama,
+			// 'id_varian' => $id, // auto-increment
+			'id_jenis_barang' => $id_jenis_barang,
+			'id_ukuran_kertas' => $id_ukuran_kertas,
+			'id_jenis_kertas' => $id_jenis_kertas,
+			'nama_varian' => $nama,
 			'jumlah' => $jumlah,
-			'harga_beli' => $beli,
-			'harga_jual' => $jual,
 			'stock_awal' => $stock_awal,
 			'stock' => $stock,
 			'warna' => $warna,
+			'harga_beli' => $beli,
+			'harga_jual' => $jual,
 			'warning' => $warning
 		);
-		return $this->db->insert('barang', $record);
+		return $this->db->insert('varian', $record);
 	}
 
-	public function update($id,$nama,$jumlah,$beli,$jual,$stock_awal,$stock,$warna,$warning) {
+	public function update($id,$id_jenis_barang,$id_ukuran_kertas,$id_jenis_kertas,$nama,$jumlah,$stock_awal,$stock,$warna,$beli,$jual,$warning) {
 		$record = array(
-			// 'id_barang' => $id, // cannot be changed on update
-			'nama_barang' => $nama,
+			'id_jenis_barang' => $id_jenis_barang,
+			'id_ukuran_kertas' => $id_ukuran_kertas,
+			'id_jenis_kertas' => $id_jenis_kertas,
+			'nama_varian' => $nama,
 			'jumlah' => $jumlah,
-			'harga_beli' => $beli,
-			'harga_jual' => $jual,
 			'stock_awal' => $stock_awal,
 			'stock' => $stock,
 			'warna' => $warna,
-			'warning' => $warning		
+			'harga_beli' => $beli,
+			'harga_jual' => $jual,
+			'warning' => $warning
 		);
 		$this->db->where('id_barang', $id);
-		return $this->db->update('barang', $record);
+		return $this->db->update('varian', $record);
 	}
 
 	public function delete($id) {
-		$this->db->where('id_barang', $id);
-		return $this->db->delete('barang');
+		$this->db->where('id_varian', $id);
+		return $this->db->delete('varian');
 	}
 
 	public function getAllWarna() {
 		$this->db->select('warna');
 		$this->db->group_by('warna');
-		return $this->db->get('barang')->result_array();
+		return $this->db->get('varian')->result_array();
 	}
 }
