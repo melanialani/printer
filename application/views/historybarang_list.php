@@ -25,7 +25,7 @@
                                         <td><?= $value['tanggal']; ?></td>
                                         <td><?= $value['deskripsi']; ?></td>
                                         <td align="center">
-                                            <a href="<?= site_url('ukurankertas/delete/'.$value['id_ukuran_kertas']); ?>" class="btn btn-danger btn-xs"><span class="ti-trash" title="Delete"></span></a>
+                                            <a href="<?= site_url('historybarang/delete/'.$value['id_history']); ?>" class="btn btn-danger btn-xs"><span class="ti-trash" title="Delete"></span></a>
                                             <!-- <span class="icon-name"> Delete</span> -->
                                         </td>
                                     </tr>
