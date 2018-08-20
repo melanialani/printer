@@ -104,7 +104,7 @@
                     <li>
                         <a href="<?= site_url('jeniscetak'); ?>">
                             <i class="ti-view-list-alt"></i>
-                            <p>Jenis Cetakan</p>
+                            <p>Master Jenis Cetakan</p>
                         </a>
                     </li>
                     <li>
@@ -140,9 +140,15 @@
                         </a>
                     </li> -->
                     <li>
-                        <a href="<?= site_url('order'); ?>">
+                        <a href="<?= site_url('order/barang'); ?>">
                             <i class="ti-support"></i>
-                            <p>Pesanan Baru</p>
+                            <p>Order Barang</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('order/cetak'); ?>">
+                            <i class="ti-support"></i>
+                            <p>Order Cetakan</p>
                         </a>
                     </li>
                     <li>

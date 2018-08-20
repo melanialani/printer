@@ -18,13 +18,20 @@
                                     <div class="form-group">
                                         <label>Jenis Cetakan</label>
                                         <?php if (!$edited) { ?>
-                                            <select name="jenis_cetakan" id="jenis_cetakan" class="form-control border-input" required>
-                                            <?php foreach ($jenis_cetakan as $value) {
+                                            <select name="jenis_cetak" id="jenis_cetak" class="form-control border-input" required>
+                                            <?php foreach ($jenis_cetak as $value) {
                                                     echo "<option value='". $value['id_jenis_cetakan'] . "'>" . $value['nama_jenis_cetakan'] . "</option>";
                                                 } ?>
                                             </select>
                                         <?php } else { ?>
-                                            <input type="text" class="form-control border-input" placeholder="John Doe" id="nama" name="nama" required value="<?= $detail['nama_user'] ?>">
+                                            <select name="jenis_cetak" id="jenis_cetak" class="form-control border-input" required>
+                                            <?php foreach ($jenis_cetak as $value) {
+                                                if ($value['id_jenis_cetakan'] == $detail['id_jenis_cetakan'])
+                                                    echo "<option value='". $value['id_jenis_cetakan'] . "' selected>" . $value['nama_jenis_cetakan'] . "</option>";
+                                                else 
+                                                    echo "<option value='". $value['id_jenis_cetakan'] . "'>" . $value['nama_jenis_cetakan'] . "</option>";
+                                                } ?>
+                                            </select>
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -46,10 +53,10 @@
                                             <!-- <input type="text" class="form-control border-input" placeholder="Customer" id="role" name="role" required value="<?= $detail['role'] ?>"> -->
                                             <select name="warna" id="warna" class="form-control border-input" required>
                                             <?php foreach ($warna as $value) {
-                                                if ( $value['id'] == $detail['warna'])
-                                                    echo "<option value='". $value['id'] . "' selected>" . $value['nama'] . "</option>";
+                                                if ($value['warna'] == $detail['warna'])
+                                                    echo "<option value='". $value['warna'] . "' selected>" . $value['nama'] . "</option>";
                                                 else 
-                                                    echo "<option value='". $value['id'] . "'>" . $value['nama'] . "</option>";
+                                                    echo "<option value='". $value['warna'] . "'>" . $value['nama'] . "</option>";
                                                 } ?>
                                             </select>
                                         <?php } ?>
@@ -60,19 +67,19 @@
                                         <label>Jenis Kertas</label>
                                         <?php if (!$edited) { ?>
                                             <!-- <input type="text" class="form-control border-input" placeholder="Customer" id="role" name="role" required> -->
-                                            <select name="warna" id="warna" class="form-control border-input" required>
-                                            <?php foreach ($warna as $value) {
-                                                    echo "<option value='". $value['warna'] . "'>" . $value['warna'] . "</option>";
+                                            <select name="jenis_kertas" id="jenis_kertas" class="form-control border-input" required>
+                                            <?php foreach ($jenis_kertas as $value) {
+                                                    echo "<option value='". $value['id_jenis_kertas'] . "'>" . $value['namajenis_kertas'] . "</option>";
                                                 } ?>
                                             </select>
                                         <?php } else { ?>
                                             <!-- <input type="text" class="form-control border-input" placeholder="Customer" id="role" name="role" required value="<?= $detail['role'] ?>"> -->
-                                            <select name="warna" id="warna" class="form-control border-input" required>
-                                            <?php foreach ($warna as $value) {
-                                                if ( $value['id'] == $detail['warna'])
-                                                    echo "<option value='". $value['id'] . "' selected>" . $value['nama'] . "</option>";
+                                            <select name="jenis_kertas" id="jenis_kertas" class="form-control border-input" required>
+                                            <?php foreach ($jenis_kertas as $value) {
+                                                if ($value['id_jenis_kertas'] == $detail['jenis_kertas'])
+                                                    echo "<option value='". $value['id_jenis_kertas'] . "' selected>" . $value['namajenis_kertas'] . "</option>";
                                                 else 
-                                                    echo "<option value='". $value['id'] . "'>" . $value['nama'] . "</option>";
+                                                    echo "<option value='". $value['id_jenis_kertas'] . "'>" . $value['namajenis_kertas'] . "</option>";
                                                 } ?>
                                             </select>
                                         <?php } ?>
@@ -82,9 +89,9 @@
                                     <div class="form-group">
                                         <label>Cetak sebanyak</label>
                                         <?php if (!$edited) { ?>
-                                            <input type="number" class="form-control border-input" placeholder="500"  id="qty" name="qty">
+                                            <input type="number" class="form-control border-input" placeholder="500"  id="qty" name="qty" required>
                                         <?php } else { ?>
-                                            <input type="number" class="form-control border-input" placeholder="500"  id="qty" name="qty" value="<?= $detail['qty'] ?>">
+                                            <input type="number" class="form-control border-input" placeholder="500"  id="qty" name="qty" required value="<?= $detail['qty'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -116,9 +123,9 @@
                                     <div class="form-group">
                                         <label>Tinggi Kertas</label>
                                         <?php if (!$edited) { ?>
-                                            <input type="number" class="form-control border-input" placeholder="1 cm"  id="tinggi" name="tinggi">
+                                            <input type="number" class="form-control border-input" placeholder="1 cm"  id="tinggi" name="tinggi" required>
                                         <?php } else { ?>
-                                            <input type="number" class="form-control border-input" placeholder="1 cm"  id="tinggi" name="tinggi" value="<?= $detail['tinggi'] ?>">
+                                            <input type="number" class="form-control border-input" placeholder="1 cm"  id="tinggi" name="tinggi" required value="<?= $detail['tinggi'] ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -141,7 +148,7 @@
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-info btn-fill btn-wd" value="save" id="button" name="button">Simpan</button>
+                                <button type="submit" class="btn btn-info btn-fill btn-wd" value="save" id="button" name="button">Mulai Order Cetakan</button>
                             </div>
                             <div class="clearfix"></div>
                         </form>

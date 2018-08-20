@@ -22,6 +22,44 @@ class Order extends CI_Controller {
 		}
 	}
 
+	public function barang() {
+		if ($_SESSION['printer']['user']['role'] == 2){
+			$data['page_title'] = 'Order Barang';
+			$data['page_note'] = 'Form pembelian barang';
+			$data['edited'] = false;
+
+			// default
+			$data['jenis_barang'] = $this->MJenisBarang->getAll();
+
+			// read after post
+			$data['barang'] = $this->MBarang->getAllWithJenis($this->input->post('jenis_barang'));
+
+			$this->load->view('header', $data);
+			$this->load->view('order_barang', $data);
+			$this->load->view('footer', $data);
+		} else {
+			redirect('login');
+		}
+	}
+
+	public function cetak() {
+		if ($_SESSION['printer']['user']['role'] == 2){
+			$data['page_title'] = 'Order Cetakan';
+			$data['page_note'] = 'Form untuk order cetakan';
+			$data['edited'] = false;
+
+			$data['jenis_cetak'] = $this->MJenisCetak->getAll();
+			$data['jenis_kertas'] = $this->MJenisKertas->getAll();
+			$data['warna'] = $this->MBarang->getAllWarna();
+
+			$this->load->view('header', $data);
+			$this->load->view('order_add', $data);
+			$this->load->view('footer', $data);
+		} else {
+			redirect('login');
+		}
+	}
+
 	public function add() {
 		if ($_SESSION['printer']['user']['role'] == 2){
 			$data['page_title'] = 'Tambah Ukuran Kertas Baru';
