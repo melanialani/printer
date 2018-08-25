@@ -152,6 +152,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="<?= site_url('order/upload'); ?>">
+                            <i class="ti-file"></i>
+                            <p>Upload File</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?= site_url('order/lst'); ?>">
                             <i class="ti-receipt"></i>
                             <p>History Pesanan</p>

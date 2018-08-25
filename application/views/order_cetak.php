@@ -44,7 +44,7 @@
                                         <label>Warna Kertas</label>
                                         <?php if (!$edited) { ?>
                                             <!-- <input type="text" class="form-control border-input" placeholder="Customer" id="role" name="role" required> -->
-                                            <select name="warna" id="warna" class="form-control border-input" required onchange="this.form.submit()">
+                                            <select name="warna" id="warna" class="form-control border-input" required>
                                             <?php foreach ($warna as $value) {
                                                     echo "<option value='". $value['warna'] . "'>" . $value['warna'] . "</option>";
                                                 } ?>

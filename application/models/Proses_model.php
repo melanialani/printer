@@ -49,7 +49,7 @@ class Proses_model extends CI_Model {
 		$this->db->where('id_proses', $id);
 		return $this->db->delete('proses');
 	}
-#endregion
+
 #region detail proses
 	public function getAllDetailProses() {
 		return $this->db->get('detailbarangproses')->result_array();
@@ -93,5 +93,29 @@ class Proses_model extends CI_Model {
 		$this->db->where('id_barang', $id_barang);
 		return $this->db->delete('detailbarangproses');
 	}
-#endregion
+
+#region others
+	public function insertImage($data) {
+		$record = array(
+			'file_name' => $data['file_name'],
+	  		'file_type' => $data['file_type'],
+	  		'file_path' => $data['file_path'],
+	  		'full_path' => $data['full_path'],
+	  		'raw_name' => $data['raw_name'],
+	  		'orig_name' => $data['orig_name'],
+	  		'client_name' => $data['client_name'],
+	  		'file_ext' => $data['file_ext'],
+	  		'file_size' => $data['file_size'],
+	  		'image_width' => $data['image_width'],
+	  		'image_height' => $data['image_height'],
+	  		'image_type' => $data['image_type'],
+	  		'image_size_str' => $data['image_size_str']
+		);
+		return $this->db->insert('image', $record);
+	}
+
+	public function deleteImage($id) {
+		$this->db->where('id_image', $id);
+		return $this->db->delete('image');
+	}
 }

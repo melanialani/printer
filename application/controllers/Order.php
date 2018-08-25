@@ -58,7 +58,7 @@ class Order extends CI_Controller {
 			$data['warna'] = $this->MBarang->getAllWarna();
 
 			$this->load->view('header', $data);
-			$this->load->view('order_add', $data);
+			$this->load->view('order_cetak', $data);
 			$this->load->view('footer', $data);
 		} else {
 			redirect('login');
@@ -114,6 +114,62 @@ class Order extends CI_Controller {
 		if ($_SESSION['printer']['user']['role'] == 2){
 			$result = $this->MUkuranKertas->delete($id);
 			if ($result) redirect('ukurankertas');
+		} else {
+			redirect('login');
+		}
+	}
+
+	public function upload() {
+		if (!empty($_SESSION['printer']['user']['role'])){
+			$data['page_title'] = 'Upload File';
+			$data['page_note'] = 'Upload file yang akan dicetak';
+			$data['edited'] = false;
+
+			if (!empty($_FILES["file_name"])){
+			   	$config = array(
+			     	'upload_path' => 'upload/',
+			     	'allowed_types' => 'jpeg|jpg|png|psd|cdr', // |extensi lainnya
+			     	'max_size' => '0',
+			     	'file_name' => preg_replace("/[^a-zA-Z0-9]/", "", $_FILES["file_name"]['name'])
+			     	//'encrypt_name' => true // encrypt file name
+			   	);
+			   	
+			   	$this->load->library('upload');
+		        $this->upload->initialize($config);
+
+		        if (!$this->upload->do_upload('file_name')) {
+		        	$this->session->set_flashdata('msg', $this->upload->display_errors());
+		        } else {
+		        	$data = $this->upload->data();
+			 		$result = $this->MProses->insertImage($data);
+			 		if ($result) $this->session->set_flashdata('msg', 'File berhasil di input!');
+			 		else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+			     	redirect('order/upload');
+		        }
+			}
+
+		   	$data['row'] = $this->db->get('image')->result();
+
+		   	$this->load->view('header', $data);
+			$this->load->view('upload_file', $data);
+			$this->load->view('footer', $data);
+		} else {
+			redirect('login');
+		}
+	}
+
+	public function download_file($str) {
+		if (!empty($_SESSION['printer']['user']['role'])){
+			force_download('./upload/'.$str, null);
+		} else {
+			redirect('login');
+		}
+	}
+
+	public function deleteImage($id) {
+		if ($_SESSION['printer']['user']['role'] == 2){
+			$result = $this->MProses->deleteImage($id);
+			if ($result) redirect('order/upload');
 		} else {
 			redirect('login');
 		}

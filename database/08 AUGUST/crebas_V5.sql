@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2018 at 03:45 PM
+-- Generation Time: Aug 25, 2018 at 06:57 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -98,6 +98,16 @@ CREATE TABLE `history` (
   `deskripsi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`id_history`, `id_varian`, `tanggal`, `deskripsi`) VALUES
+(1, 2, '2018-08-20 16:10:17', '+ 150 (awal)'),
+(2, 2, '2018-08-20 16:17:06', '+ 12 (update)'),
+(3, 3, '2018-08-25 16:36:09', '+48 (awal)'),
+(4, 4, '2018-08-25 16:38:04', '+35 (awal)');
+
 -- --------------------------------------------------------
 
 --
@@ -115,6 +125,36 @@ CREATE TABLE `hpembelian` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `image`
+--
+
+CREATE TABLE `image` (
+  `id_image` int(11) NOT NULL,
+  `file_name` varchar(50) NOT NULL,
+  `file_type` varchar(50) NOT NULL,
+  `file_path` varchar(50) NOT NULL,
+  `full_path` varchar(100) NOT NULL,
+  `raw_name` varchar(50) NOT NULL,
+  `orig_name` varchar(50) NOT NULL,
+  `client_name` varchar(50) NOT NULL,
+  `file_ext` varchar(50) NOT NULL,
+  `file_size` varchar(10) NOT NULL,
+  `image_width` varchar(10) NOT NULL,
+  `image_height` varchar(10) NOT NULL,
+  `image_type` varchar(10) NOT NULL,
+  `image_size_str` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`id_image`, `file_name`, `file_type`, `file_path`, `full_path`, `raw_name`, `orig_name`, `client_name`, `file_ext`, `file_size`, `image_width`, `image_height`, `image_type`, `image_size_str`) VALUES
+(9, '18251920x1080jpg.jpg', 'image/jpeg', 'C:/xampp/htdocs/printer/upload/', 'C:/xampp/htdocs/printer/upload/18251920x1080jpg.jpg', '18251920x1080jpg', '18251920x1080jpg.jpg', '1825_1920x1080.jpg', '.jpg', '662.86', '1920', '1080', 'jpeg', 'width=\"1920\" height=\"1080\"');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jenis_barang`
 --
 
@@ -122,6 +162,14 @@ CREATE TABLE `jenis_barang` (
   `id_jenis_barang` int(11) NOT NULL,
   `nama_jenis_barang` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jenis_barang`
+--
+
+INSERT INTO `jenis_barang` (`id_jenis_barang`, `nama_jenis_barang`) VALUES
+(1, 'Kertas'),
+(2, 'Tinta');
 
 -- --------------------------------------------------------
 
@@ -134,6 +182,14 @@ CREATE TABLE `jenis_cetakan` (
   `nama_jenis_cetakan` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jenis_cetakan`
+--
+
+INSERT INTO `jenis_cetakan` (`id_jenis_cetakan`, `nama_jenis_cetakan`) VALUES
+(1, 'Banner'),
+(2, 'Brosur');
+
 -- --------------------------------------------------------
 
 --
@@ -144,6 +200,15 @@ CREATE TABLE `jenis_kertas` (
   `id_jenis_kertas` int(11) NOT NULL,
   `namajenis_kertas` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jenis_kertas`
+--
+
+INSERT INTO `jenis_kertas` (`id_jenis_kertas`, `namajenis_kertas`) VALUES
+(1, 'Tanpa jenis kertas'),
+(2, 'Glossy'),
+(3, 'Dove');
 
 -- --------------------------------------------------------
 
@@ -168,6 +233,14 @@ CREATE TABLE `master_plate` (
   `panjang_plate` int(11) DEFAULT NULL,
   `lebar_plate` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `master_plate`
+--
+
+INSERT INTO `master_plate` (`id_master_plate`, `panjang_plate`, `lebar_plate`) VALUES
+(1, 30, 20),
+(2, 50, 50);
 
 -- --------------------------------------------------------
 
@@ -236,6 +309,15 @@ CREATE TABLE `ukuran_kertas` (
   `lebar_kertas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `ukuran_kertas`
+--
+
+INSERT INTO `ukuran_kertas` (`id_ukuran_kertas`, `nama_ukuran_kertas`, `panjang_kertas`, `lebar_kertas`) VALUES
+(1, 'Tanpa ukuran kertas', 0, 0),
+(2, 'Ukuran A4', 110, 75),
+(3, 'Ukuran A5', 75, 50);
+
 -- --------------------------------------------------------
 
 --
@@ -254,6 +336,15 @@ CREATE TABLE `user` (
   `role` int(11) DEFAULT NULL,
   `is_active` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `nama_user`, `alamat_user`, `no_hp`, `email`, `photo`, `username`, `password`, `role`, `is_active`) VALUES
+(1, 'Administrator', 'Alamat Lengkap Admin', '081234567890', 'admin@mail.com', NULL, 'admin', '21232f297a57a5a743894a0e4a801fc3', 0, 1),
+(2, 'Mary Jane', '', '', 'maryjane@gmail.com', NULL, 'mary', '5844a15e76563fedd11840fd6f40ea7b', 1, 1),
+(3, NULL, NULL, NULL, 'johndoe@gmail.com', NULL, 'john', '2829fc16ad8ca5a79da932f910afad1c', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -276,23 +367,15 @@ CREATE TABLE `varian` (
   `warning` int(11) NOT NULL DEFAULT '100'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `image` (
-   `id_image` int(11) NOT NULL AUTO_INCREMENT,
-   `file_name` varchar(50) NOT NULL,
-   `file_type` varchar(50) NOT NULL,
-   `file_path` varchar(50) NOT NULL,
-   `full_path` varchar(100) NOT NULL,
-   `raw_name` varchar(50) NOT NULL,
-   `orig_name` varchar(50) NOT NULL,
-   `client_name` varchar(50) NOT NULL,
-   `file_ext` varchar(50) NOT NULL,
-   `file_size` varchar(10) NOT NULL,
-   `image_width` varchar(10) NOT NULL,
-   `image_height` varchar(10) NOT NULL,
-   `image_type` varchar(10) NOT NULL,
-   `image_size_str` varchar(50) NOT NULL,
-   PRIMARY KEY (`id_image`)
-)
+--
+-- Dumping data for table `varian`
+--
+
+INSERT INTO `varian` (`id_varian`, `id_jenis_barang`, `id_ukuran_kertas`, `id_jenis_kertas`, `nama_varian`, `jumlah`, `stock_awal`, `stock`, `warna`, `harga_beli`, `harga_jual`, `warning`) VALUES
+(1, 2, 1, 1, 'Tinta Hitam', 30, 50, 40, 'Hitam', 120000, 130000, 10),
+(2, 1, 1, 2, 'Kertas A4', 57, 150, 152, 'Kuning', 1000, 1500, 100),
+(3, 2, 1, 1, 'Tinta merah', 46, 48, 47, 'Merah', 140000, 150000, 20),
+(4, 2, 1, 1, 'Tinta biru', 36, 35, 37, 'Biru', 145000, 155000, 15);
 
 --
 -- Indexes for dumped tables
@@ -346,6 +429,12 @@ ALTER TABLE `history`
 ALTER TABLE `hpembelian`
   ADD PRIMARY KEY (`id_trans`),
   ADD KEY `fk_user_hpembelian` (`id_user`);
+
+--
+-- Indexes for table `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`id_image`);
 
 --
 -- Indexes for table `jenis_barang`
@@ -435,25 +524,31 @@ ALTER TABLE `varian`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `image`
+--
+ALTER TABLE `image`
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `jenis_barang`
 --
 ALTER TABLE `jenis_barang`
-  MODIFY `id_jenis_barang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jenis_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `jenis_cetakan`
 --
 ALTER TABLE `jenis_cetakan`
-  MODIFY `id_jenis_cetakan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jenis_cetakan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `jenis_kertas`
 --
 ALTER TABLE `jenis_kertas`
-  MODIFY `id_jenis_kertas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jenis_kertas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `laminasi`
@@ -465,7 +560,7 @@ ALTER TABLE `laminasi`
 -- AUTO_INCREMENT for table `master_plate`
 --
 ALTER TABLE `master_plate`
-  MODIFY `id_master_plate` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_master_plate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `numerator`
@@ -489,19 +584,19 @@ ALTER TABLE `porforasi`
 -- AUTO_INCREMENT for table `ukuran_kertas`
 --
 ALTER TABLE `ukuran_kertas`
-  MODIFY `id_ukuran_kertas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ukuran_kertas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `varian`
 --
 ALTER TABLE `varian`
-  MODIFY `id_varian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_varian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -581,42 +676,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-   
---
--- Dumping data for tables
---
-
-INSERT INTO `user` (`id_user`, `nama_user`, `alamat_user`, `no_hp`, `email`, `photo`, `username`, `password`, `role`, `is_active`) VALUES
-(1, 'Administrator', 'Alamat Lengkap Admin', '081234567890', 'admin@mail.com', NULL, 'admin', '21232f297a57a5a743894a0e4a801fc3', 0, 1),
-(2, 'Mary Jane', '', '', 'maryjane@gmail.com', NULL, 'mary', '5844a15e76563fedd11840fd6f40ea7b', 1, 1),
-(3, NULL, NULL, NULL, 'johndoe@gmail.com', NULL, 'john', '2829fc16ad8ca5a79da932f910afad1c', 2, 1);
-
-INSERT INTO `jenis_barang` (`id_jenis_barang`, `nama_jenis_barang`) VALUES
-(1, 'Kertas'),
-(2, 'Tinta');
-
-INSERT INTO `jenis_cetakan` (`id_jenis_cetakan`, `nama_jenis_cetakan`) VALUES
-(1, 'Banner'),
-(2, 'Brosur');
-
-INSERT INTO `jenis_kertas` (`id_jenis_kertas`, `namajenis_kertas`) VALUES
-(1, 'Tanpa jenis kertas'),
-(2, 'Glossy'),
-(3, 'Dove');
-
-INSERT INTO `master_plate` (`id_master_plate`, `panjang_plate`, `lebar_plate`) VALUES
-(1, 30, 20),
-(2, 50, 50);
-
-INSERT INTO `ukuran_kertas` (`id_ukuran_kertas`, `nama_ukuran_kertas`, `panjang_kertas`, `lebar_kertas`) VALUES
-(1, 'Tanpa ukuran kertas', 0, 0),
-(2, 'Ukuran A4', 110, 75),
-(3, 'Ukuran A5', 75, 50);
-
-INSERT INTO `varian` (`id_varian`, `id_jenis_barang`, `id_ukuran_kertas`, `id_jenis_kertas`, `nama_varian`, `jumlah`, `stock_awal`, `stock`, `warna`, `harga_beli`, `harga_jual`, `warning`) VALUES
-(1, 2, 1, 1, 'Tinta Hitam', 30, 50, 40, 'Hitam', 120000, 130000, 10),
-(2, 1, 1, 2, 'Kertas A4', 57, 150, 152, 'Kuning', 1000, 1500, 100);
-
-INSERT INTO `history` (`id_history`, `id_varian`, `tanggal`, `deskripsi`) VALUES
-(1, 2, '2018-08-20 16:10:17', '+ 150 (awal)'),
-(2, 2, '2018-08-20 16:17:06', '+ 12 (update)');
