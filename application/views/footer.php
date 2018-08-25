@@ -10,7 +10,7 @@
                 </ul>
             </nav>
             <div class="copyright pull-right">
-                &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="#">Kevin</a>
+                &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="ti ti-heart"></i> by <a href="#">Kevin</a>
             </div>
         </div>
     </footer>

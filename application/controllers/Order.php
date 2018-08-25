@@ -33,7 +33,12 @@ class Order extends CI_Controller {
 
 			// read after post
 			$data['barang'] = $this->MBarang->getAllWithJenis($this->input->post('jenis_barang'));
+			$data['id_jenis_barang'] = $this->input->post('jenis_barang') ? $this->input->post('jenis_barang') : null;
 
+			if ($this->input->post('save')){
+
+			}
+			
 			$this->load->view('header', $data);
 			$this->load->view('order_barang', $data);
 			$this->load->view('footer', $data);

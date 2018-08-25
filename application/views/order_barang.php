@@ -17,7 +17,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Jenis Barang</label>
-                                        <?php if (!$edited) { ?>
+                                        <?php if (!$id_jenis_barang) { ?>
                                             <select name="jenis_barang" id="jenis_barang" class="form-control border-input" required onchange="this.form.submit()">
                                                 <option>Pilih Jenis Barang</option>
                                             <?php foreach ($jenis_barang as $value) {
@@ -27,7 +27,7 @@
                                         <?php } else { ?>
                                             <select name="jenis_barang" id="jenis_barang" class="form-control border-input" required onchange="this.form.submit()">
                                             <?php foreach ($jenis_barang as $value) {
-                                                if ($value['id_jenis_barang'] == $detail['id_jenis_barang'])
+                                                if ($value['id_jenis_barang'] == $id_jenis_barang)
                                                     echo "<option value='". $value['id_jenis_barang'] . "' selected>" . $value['nama_jenis_barang'] . "</option>";
                                                 else 
                                                     echo "<option value='". $value['id_jenis_barang'] . "'>" . $value['nama_jenis_barang'] . "</option>";
@@ -54,6 +54,8 @@
                                                 <th>Jenis Kertas</th>
                                                 <th>Ukuran Kertas</th>
                                                 <th>Harga</th>
+                                                <th width="10%">Jumlah</th>
+                                                <th width="10%">Total</th>
                                                 <th></th>
                                             </tr></thead>
                                             <tbody>
@@ -64,23 +66,37 @@
                                                         <td><?= $value['warna']; ?></td>
                                                         <td><?= $value['namajenis_kertas']; ?></td>
                                                         <td><?= $value['nama_ukuran_kertas']; ?></td>
-                                                        <td><?= number_format($value['harga_jual']); ?></td>
-                                                        <td align="center">
-                                                            <a href="<?= site_url('barang/edit/'.$value['id_varian']); ?>" class="btn btn-waning btn-xs"><span class="ti-pencil" title="Edit"></span> Pilih</a>
+                                                        <td class="price">
+                                                            <?= $value['harga_jual']; ?>
                                                         </td>
+                                                        <td align="center">
+                                                            <!-- <a href="<?= site_url('barang/edit/'.$value['id_varian']); ?>" class="btn btn-waning btn-xs"><span class="ti-pencil" title="Edit"></span> Pilih</a> -->
+                                                            <?php if (!$edited) { ?>
+                                                                <input type="number" class="form-control border-input qty" placeholder="500"  id="qty" name="qty" min="0" value="0" required>
+                                                            <?php } else { ?>
+                                                                <input type="number" class="form-control border-input qty" placeholder="500"  id="qty" name="qty" min="0" value="<?= $detail['qty'] ?>" required>
+                                                            <?php } ?>
+                                                        </td>
+                                                        <td class="sum" align="right">0</td>
                                                     </tr>
                                                     <?php  
                                                 } ?>
+                                                <tr>
+                                                    <td colspan='6' align="right">Total</td>
+                                                    <td id='total' align="right">0</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <?php } ?>
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info btn-fill btn-wd" value="save" id="button" name="button">Mulai Order Barang</button>
                             </div>
+
+                            <?php } ?>
+
                             <div class="clearfix"></div>
                         </form>
                     </div>
@@ -90,3 +106,24 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function getTotal(){
+        var total = 0;
+        $('.sum').each(function(){
+            total += parseFloat(this.innerHTML)
+        });
+        $('#total').text(total);
+    }
+
+    getTotal();
+
+    $('.qty').keyup(function(){
+        var parent = $(this).parents('tr');
+        var price = $('.price', parent);
+        var sum = $('.sum', parent);
+        var value = parseInt(this.value) * parseFloat(price.get(0).innerHTML||0);
+        sum.text(value);
+        getTotal();
+    })
+</script>

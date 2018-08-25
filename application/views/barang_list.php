@@ -14,15 +14,15 @@
                         <table id="myTable" class="table table-striped">
                             <thead><tr>
                                 <th>ID</th>
-                                <th>Jenis Barang</th>
+                                <!-- <th>Jenis Barang</th>
                                 <th>Ukuran Kertas</th>
-                                <th>Jenis Kertas</th>
+                                <th>Jenis Kertas</th> -->
                                 <th>Nama Varian</th>
                                 <th>Warna</th>
-                                <th>Jumlah</th>
-                                <th>Stock Awal</th>
+                                <!-- <th>Jumlah</th> -->
+                                <!-- <th>Stock Awal</th> -->
                                 <th>Stock</th>
-                                <th>Warning Stock</th>
+                                <!-- <th>Warning Stock</th> -->
                                 <th>Harga Beli</th>
                                 <th>Harga Jual</th>
                                 <th></th>
@@ -32,15 +32,15 @@
                                     ?>
                                     <tr>
                                         <td><?= $value['id_varian']; ?></td>
-                                        <td><?= $value['nama_jenis_barang']; ?></td>
+                                        <!-- <td><?= $value['nama_jenis_barang']; ?></td>
                                         <td><?= $value['nama_ukuran_kertas']; ?></td>
-                                        <td><?= $value['namajenis_kertas']; ?></td>
+                                        <td><?= $value['namajenis_kertas']; ?></td> -->
                                         <td><?= $value['nama_varian']; ?></td>
                                         <td><?= $value['warna']; ?></td>
-                                        <td><?= $value['jumlah']; ?></td>
-                                        <td><?= $value['stock_awal']; ?></td>
+                                        <!-- <td><?= $value['jumlah']; ?></td> -->
+                                        <!-- <td><?= $value['stock_awal']; ?></td> -->
                                         <td><?= $value['stock']; ?></td>
-                                        <td><?= $value['warning']; ?></td>
+                                        <!-- <td><?= $value['warning']; ?></td> -->
                                         <td><?= number_format($value['harga_beli']); ?></td>
                                         <td><?= number_format($value['harga_jual']); ?></td>
                                         <td align="center">
