@@ -79,7 +79,7 @@ class Order extends CI_Controller {
 				$data['id_jenis_kertas'] = $this->input->post('jenis_kertas') ? $this->input->post('jenis_kertas') : null;
 				$data['id_varian'] = $this->input->post('varian') ? $this->input->post('varian') : null;
 
-				// hitung harga total
+				// hitung harga total dan estimasi tanggal jadi
 				if (!empty($data['qty']) && !empty($data['id_varian'])){
 					foreach ($data['varian'] as $value) {
 	                    if ($value['id_varian'] == $data['id_varian']){
@@ -87,6 +87,13 @@ class Order extends CI_Controller {
 	                    	break;
 	                    }
                     }
+
+                    $data['tanggal_jadi'] = date("d-m-Y", strtotime("+1 week"));
+				}
+
+				// masukin ke db
+				if ($this->input->post('save')){
+
 				}
 			}
 

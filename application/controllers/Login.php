@@ -15,6 +15,7 @@ class Login extends CI_Controller {
 			$result = $this->MUser->getLogin($this->input->post('username'),$this->input->post('password'));
 			if (!empty($result)){
 				$_SESSION['printer']['user']['loggedin'] = true;
+				$_SESSION['printer']['user']['id_user'] = $result['id_user'];
 				$_SESSION['printer']['user']['username'] = $result['username'];
 				$_SESSION['printer']['user']['role'] = $result['role'];
 				$_SESSION['printer']['user']['nama'] = $result['nama_user'] ? $result['nama_user'] : $result['username'];
@@ -72,7 +73,7 @@ class Login extends CI_Controller {
 	public function dashboard() {
 		if (!empty($_SESSION['printer']['user'])){
 			$data['page_title'] = 'Home';
-			
+
 			$this->load->view('header', $data);
 			$this->load->view('dashboard', $data);
 			$this->load->view('footer', $data);

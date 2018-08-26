@@ -190,6 +190,10 @@
                                 </div>
                             </div>
 
+                            <div class="text-right">
+                                <label>Barang dapat diambil pada tanggal : <?= !empty($tanggal_jadi) ? $tanggal_jadi : '-'; ?></label>
+                            </div>
+                            <br/>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info btn-fill btn-wd" value="save" id="button" name="button">Mulai Order Cetakan</button>
                             </div>

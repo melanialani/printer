@@ -140,6 +140,7 @@ $autoload['model'] = array(
 	'JenisCetak_model' => 'MJenisCetak',
 	'JenisKertas_model' => 'MJenisKertas',
 	'Laminasi_model' => 'MLaminasi',
+	'Order_model' => 'MOrder',
 	'Plate_model' => 'MPlate',
 	'Proses_model' => 'MProses',
 	'UkuranKertas_model' => 'MUkuranKertas',
