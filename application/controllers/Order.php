@@ -55,7 +55,40 @@ class Order extends CI_Controller {
 
 			$data['jenis_cetak'] = $this->MJenisCetak->getAll();
 			$data['jenis_kertas'] = $this->MJenisKertas->getAll();
-			$data['warna'] = $this->MBarang->getAllWarna();
+
+			if ($this->input->post()){
+				$data['edited'] = true;
+
+				// read after post
+				$data['varian'] = $this->MBarang->getAllWithJenisKertas($this->input->post('jenis_kertas'));
+
+				// pass param back
+				$data['panjang'] = $this->input->post('panjang') ? $this->input->post('panjang') : 0;
+				$data['tinggi'] = $this->input->post('tinggi') ? $this->input->post('tinggi') : 0;
+				$data['lebar'] = $this->input->post('lebar') ? $this->input->post('lebar') : 0;
+				
+				$data['qty'] = $this->input->post('qty') ? $this->input->post('qty') : 0;
+				$data['total'] = $this->input->post('total') ? $this->input->post('total') : 0;
+
+				$data['laminasi'] = $this->input->post('laminasi') ? 1 : 0;
+				$data['porforasi'] = $this->input->post('porforasi') ? 1 : 0;
+				$data['numerator'] = $this->input->post('numerator') ? 1 : 0;
+				$data['uv'] = $this->input->post('uv') ? 1 : 0;
+				
+				$data['id_jenis_cetak'] = $this->input->post('jenis_cetak') ? $this->input->post('jenis_cetak') : null;
+				$data['id_jenis_kertas'] = $this->input->post('jenis_kertas') ? $this->input->post('jenis_kertas') : null;
+				$data['id_varian'] = $this->input->post('varian') ? $this->input->post('varian') : null;
+
+				// hitung harga total
+				if (!empty($data['qty']) && !empty($data['id_varian'])){
+					foreach ($data['varian'] as $value) {
+	                    if ($value['id_varian'] == $data['id_varian']){
+	                    	$data['total'] = $value['harga_jual'] * $data['qty'];
+	                    	break;
+	                    }
+                    }
+				}
+			}
 
 			$this->load->view('header', $data);
 			$this->load->view('order_cetak', $data);

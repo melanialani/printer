@@ -14,7 +14,7 @@ class JenisKertas_model extends CI_Model {
 	}
 
 	public function getAll() {
-		$this->db->where('id_jenis_kertas <> 0');
+		$this->db->where('id_jenis_kertas <> 1');
 		return $this->db->get('jenis_kertas')->result_array();
 	}
 

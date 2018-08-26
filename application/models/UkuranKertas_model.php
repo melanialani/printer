@@ -14,7 +14,7 @@ class UkuranKertas_model extends CI_Model {
 	}
 
 	public function getAll() {
-		$this->db->where('id_ukuran_kertas <> 0');
+		$this->db->where('id_ukuran_kertas <> 1');
 		return $this->db->get('ukuran_kertas')->result_array();
 	}
 
