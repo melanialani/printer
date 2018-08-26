@@ -245,34 +245,15 @@ INSERT INTO `master_plate` (`id_master_plate`, `panjang_plate`, `lebar_plate`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `numerator`
---
-
-CREATE TABLE `numerator` (
-  `id_numerator` int(11) NOT NULL,
-  `nama_numerator` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `plong`
 --
 
 CREATE TABLE `plong` (
   `id_plong` int(11) NOT NULL,
-  `nama_plong` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `porforasi`
---
-
-CREATE TABLE `porforasi` (
-  `id_porforasi` int(11) NOT NULL,
-  `nama_porforasi` varchar(255) DEFAULT NULL
+  `nama_plong` varchar(255) DEFAULT NULL,
+  `panjang_plong` int(11) DEFAULT NULL,
+  `lebar_plong` int(11) DEFAULT NULL,
+  `harga_plong` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -284,9 +265,6 @@ CREATE TABLE `porforasi` (
 CREATE TABLE `proses` (
   `id_proses` varchar(10) NOT NULL,
   `id_jenis_cetakan` int(11) NOT NULL,
-  `id_numerator` int(11) DEFAULT NULL,
-  `id_porforasi` int(11) DEFAULT NULL,
-  `id_plong` int(11) DEFAULT NULL,
   `numerator` smallint(6) DEFAULT NULL,
   `plong` smallint(6) DEFAULT NULL,
   `panjang_cetak` int(11) DEFAULT NULL,
@@ -468,32 +446,17 @@ ALTER TABLE `master_plate`
   ADD PRIMARY KEY (`id_master_plate`);
 
 --
--- Indexes for table `numerator`
---
-ALTER TABLE `numerator`
-  ADD PRIMARY KEY (`id_numerator`);
-
---
 -- Indexes for table `plong`
 --
 ALTER TABLE `plong`
   ADD PRIMARY KEY (`id_plong`);
 
 --
--- Indexes for table `porforasi`
---
-ALTER TABLE `porforasi`
-  ADD PRIMARY KEY (`id_porforasi`);
-
---
 -- Indexes for table `proses`
 --
 ALTER TABLE `proses`
   ADD PRIMARY KEY (`id_proses`),
-  ADD KEY `fk_proses_jenis_cetakan` (`id_jenis_cetakan`),
-  ADD KEY `fk_proses_numerator` (`id_numerator`),
-  ADD KEY `fk_proses_porforasi` (`id_porforasi`),
-  ADD KEY `fk_proses_plong` (`id_plong`);
+  ADD KEY `fk_proses_jenis_cetakan` (`id_jenis_cetakan`);
 
 --
 -- Indexes for table `ukuran_kertas`
@@ -563,22 +526,10 @@ ALTER TABLE `master_plate`
   MODIFY `id_master_plate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `numerator`
---
-ALTER TABLE `numerator`
-  MODIFY `id_numerator` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `plong`
 --
 ALTER TABLE `plong`
   MODIFY `id_plong` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `porforasi`
---
-ALTER TABLE `porforasi`
-  MODIFY `id_porforasi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ukuran_kertas`
@@ -659,10 +610,7 @@ ALTER TABLE `laminasi`
 -- Constraints for table `proses`
 --
 ALTER TABLE `proses`
-  ADD CONSTRAINT `fk_proses_jenis_cetakan` FOREIGN KEY (`id_jenis_cetakan`) REFERENCES `jenis_cetakan` (`id_jenis_cetakan`),
-  ADD CONSTRAINT `fk_proses_numerator` FOREIGN KEY (`id_numerator`) REFERENCES `numerator` (`id_numerator`),
-  ADD CONSTRAINT `fk_proses_plong` FOREIGN KEY (`id_plong`) REFERENCES `plong` (`id_plong`),
-  ADD CONSTRAINT `fk_proses_porforasi` FOREIGN KEY (`id_porforasi`) REFERENCES `porforasi` (`id_porforasi`);
+  ADD CONSTRAINT `fk_proses_jenis_cetakan` FOREIGN KEY (`id_jenis_cetakan`) REFERENCES `jenis_cetakan` (`id_jenis_cetakan`);
 
 --
 -- Constraints for table `varian`
