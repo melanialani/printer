@@ -1,0 +1,2 @@
+numerator=15000
+porforasi=27500

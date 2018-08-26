@@ -88,7 +88,18 @@ class Order extends CI_Controller {
 	                    }
                     }
 
-                    $data['tanggal_jadi'] = date("d-m-Y", strtotime("+1 week"));
+                    // hitung tambahan biaya kalau pakai numerator dan porforasi
+                    $str = file_get_contents('harga.txt');
+                    $str = explode('=', $str);
+                    $porforasi = trim($str[2]);
+                    $numerator = explode('porforasi', $str[1]);
+                    $numerator = trim($numerator[0]);
+
+                    if ($data['porforasi'] == 1) $data['total'] += $porforasi;
+                    if ($data['numerator'] == 1) $data['total'] += $numerator;
+
+                    // hitung tanggal jadi -> default: seminggu setelah
+                    $data['tanggal_jadi'] = date("d-m-Y", strtotime("+3 days")); //+1 week
 				}
 
 				// masukin ke db
