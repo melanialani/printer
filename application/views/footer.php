@@ -47,7 +47,7 @@
     <script src="<?= base_url('assets/assets/js/paper-dashboard.js'); ?>"></script>
 
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-    <script src="<?= base_url('assets/assets/js/demo.js'); ?>"></script>
+    <!-- <script src="<?= base_url('assets/assets/js/demo.js'); ?>"></script> -->
 
     <script type="text/javascript">
         $(document).ready(function(){

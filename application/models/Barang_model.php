@@ -105,6 +105,23 @@ class Barang_model extends CI_Model {
 		return $result;
 	}
 
+	public function minStock($id,$qty,$keterangan='update') {
+		// get record before update
+		$beforeUpdate = $this->getOne($id);
+
+		$record = array(
+			'jumlah' => $beforeUpdate[0]['jumlah']+$qty,
+			'stock' => $beforeUpdate[0]['stock']-$qty
+		);
+		$this->db->where('id_varian', $id);
+		$result = $this->db->update('varian', $record);
+
+		// insert to table history
+		$this->insertHistoryBarang($id,'- '.$qty.' ('.$keterangan.')');
+
+		return $result;
+	}
+
 	public function delete($id) {
 		$this->db->where('id_varian', $id);
 		return $this->db->delete('varian');

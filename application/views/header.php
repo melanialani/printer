@@ -25,7 +25,7 @@
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <!-- <link href="assets/css/demo.css" rel="stylesheet" /> -->
-    <link rel="stylesheet" href="<?= base_url('assets/assets/css/demo.css'); ?>" />
+    <!-- <link rel="stylesheet" href="<?= base_url('assets/assets/css/demo.css'); ?>" /> -->
 
     <!--  Fonts and icons     -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"> -->

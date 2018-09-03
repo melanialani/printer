@@ -9,13 +9,30 @@ class Order extends CI_Controller {
 
 	public function lst() {
 		if ($_SESSION['printer']['user']['role'] == 2){
-			$data['page_title'] = 'List Ukuran Kertas';
-			$data['page_note'] = 'Daftar seluruh barang dan ukuran kertasnya';
+			$data['page_title'] = 'Daftar Pembelian';
+			$data['page_note'] = 'Daftar seluruh transaksi yang telah dilakukan user';
 
-			$data['row'] = $this->MUkuranKertas->getAllWithParent();
+			$data['row'] = $this->MOrder->getHistoryBeli();
 
 			$this->load->view('header', $data);
-			$this->load->view('ukurankertas_list', $data);
+			$this->load->view('historybeli_list', $data);
+			$this->load->view('footer', $data);
+		} else {
+			redirect('login');
+		}
+	}
+
+	public function detail($id=null) {
+		if ($_SESSION['printer']['user']['role'] == 2){
+			$data['page_title'] = 'Detail Pembelian';
+			$data['page_note'] = 'Rincian transaksi pembelian';
+
+			$trans = $this->MOrder->getOneHeader($id);
+			$data['trans'] = $trans[0];
+			$data['row'] = $this->MOrder->getDetailBeli($id);
+
+			$this->load->view('header', $data);
+			$this->load->view('historybeli_detail', $data);
 			$this->load->view('footer', $data);
 		} else {
 			redirect('login');
@@ -32,11 +49,25 @@ class Order extends CI_Controller {
 			$data['jenis_barang'] = $this->MJenisBarang->getAll();
 
 			// read after post
-			$data['barang'] = $this->MBarang->getAllWithJenis($this->input->post('jenis_barang'));
+			$list_barang = $this->MBarang->getAllWithJenis($this->input->post('jenis_barang'));
+			$barang = array();
+			foreach ($list_barang as $key => $value) {
+				$barang[$value['id_varian']] = $value;
+			}
+			$data['barang'] = $barang;
+
 			$data['id_jenis_barang'] = $this->input->post('jenis_barang') ? $this->input->post('jenis_barang') : null;
 
-			if ($this->input->post('save')){
-
+			if ($this->input->post('button') == 'save' && !empty($this->input->post('total_harga'))){
+				$dbeli = array();
+				foreach ($this->input->post('qty') as $key => $value) {
+					$dbeli[$key]['varian'] = $key;
+					$dbeli[$key]['qty'] = $value;
+					$dbeli[$key]['jumlah'] = $value * $barang[$key]['harga_jual'];
+				}
+				// echo '<pre>'; print_r($dbeli); echo '</pre>';
+				$id = $this->MOrder->insertBeliBarang($this->input->post('total_harga'),$dbeli);
+				redirect('order/detail/'.$id,'refresh');
 			}
 			
 			$this->load->view('header', $data);

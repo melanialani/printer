@@ -72,9 +72,9 @@
                                                         <td align="center">
                                                             <!-- <a href="<?= site_url('barang/edit/'.$value['id_varian']); ?>" class="btn btn-waning btn-xs"><span class="ti-pencil" title="Edit"></span> Pilih</a> -->
                                                             <?php if (!$edited) { ?>
-                                                                <input type="number" class="form-control border-input qty" placeholder="500"  id="qty" name="qty" min="0" value="0" required>
+                                                                <input type="number" class="form-control border-input qty" placeholder="500"  id="qty[<?= $value['id_varian']; ?>]" name="qty[<?= $value['id_varian']; ?>]" min="0" value="0" required>
                                                             <?php } else { ?>
-                                                                <input type="number" class="form-control border-input qty" placeholder="500"  id="qty" name="qty" min="0" value="<?= $detail['qty'] ?>" required>
+                                                                <input type="number" class="form-control border-input qty" placeholder="500"  id="qty[<?= $value['id_varian']; ?>]" name="qty[<?= $value['id_varian']; ?>]" min="0" value="0" required>
                                                             <?php } ?>
                                                         </td>
                                                         <td class="sum" align="right">0</td>
@@ -92,6 +92,7 @@
                             </div>
 
                             <div class="text-center">
+                                <input type="hidden" name="total_harga" id="total_harga" value="0">
                                 <button type="submit" class="btn btn-info btn-fill btn-wd" value="save" id="button" name="button">Mulai Order Barang</button>
                             </div>
 
@@ -114,6 +115,7 @@
             total += parseFloat(this.innerHTML)
         });
         $('#total').text(total);
+        document.getElementById("total_harga").value = total;
     }
 
     getTotal();

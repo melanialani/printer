@@ -13,6 +13,24 @@ class Order_model extends CI_Model {
 		return $this->db->get('hpembelian')->result_array();
 	}
 
+	public function getOneHeader($id) {
+		$this->db->where('id_trans', $id);
+		return $this->db->get('hpembelian')->result_array();
+	}
+
+	public function getHistoryBeli() {
+		$this->db->where('id_user', $_SESSION['printer']['user']['id_user']);
+		return $this->db->get('hpembelian')->result_array();
+	}
+
+	public function getDetailBeli($id) {
+		$this->db->select('db.id_varian, db.id_trans, db.qty_barang, db.jumlah, v.nama_varian, v.harga_jual, v.warna');
+		$this->db->from('dpembelian_barang db, varian v');
+		$this->db->where('db.id_varian = v.id_varian');
+		$this->db->where('db.id_trans', $id);
+		return $this->db->get()->result_array();
+	}
+
 	public function insertBeliBarang($total,$dbeli) {
 		$date = date('Y-m-d H:i:s');
 
@@ -26,9 +44,12 @@ class Order_model extends CI_Model {
 		// insert ke dbeli
 		foreach ($dbeli as $key => $value) {
 			$result = $this->insertDBeliBarang($id,$value['varian'],$value['qty'],$value['jumlah']);
+			$update = $this->MBarang->minStock($value['varian'],$value['qty'],'penjualan, no.nota = '.$id);
 		}
 
-		return $result;
+		if ($result)
+			return $id;
+		return false;
 	}
 
 	public function insertHBeli($id,$date,$total) {
