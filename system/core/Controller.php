@@ -93,4 +93,10 @@ class CI_Controller {
 		return self::$instance;
 	}
 
+	public function r_show($var){
+		echo '<pre>';
+		print_r($var);
+		echo '</pre>';
+	}
+
 }

@@ -108,6 +108,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="<?= site_url('plong'); ?>">
+                            <i class="ti-view-list-alt"></i>
+                            <p>Master Pisau Plong</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?= site_url('historybarang'); ?>">
                             <i class="ti-receipt"></i>
                             <p>Stok Opname</p>

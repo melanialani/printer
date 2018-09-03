@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class JenisCetak extends CI_Controller {
+class Plong extends CI_Controller {
 
 	public function index() {
 		$this->lst();
@@ -9,13 +9,13 @@ class JenisCetak extends CI_Controller {
 
 	public function lst() {
 		if ($_SESSION['printer']['user']['role'] == 0){
-			$data['page_title'] = 'List Jenis Cetakan';
-			$data['page_note'] = 'Daftar jenis cetakan yang tersedia';
+			$data['page_title'] = 'List Pisau Plong';
+			$data['page_note'] = 'Daftar ukuran pisau plong yang tersedia';
 
-			$data['row'] = $this->MJenisCetak->getAll();
+			$data['row'] = $this->MPlong->getAll();
 
 			$this->load->view('header', $data);
-			$this->load->view('jeniscetak_list', $data);
+			$this->load->view('plong_list', $data);
 			$this->load->view('footer', $data);
 		} else {
 			redirect('login');
@@ -24,17 +24,17 @@ class JenisCetak extends CI_Controller {
 
 	public function add() {
 		if ($_SESSION['printer']['user']['role'] == 0){
-			$data['page_title'] = 'Tambah Jenis Cetakan Baru';
+			$data['page_title'] = 'Tambah Pisau Plong Baru';
 			$data['edited'] = false;
 
 			if ($this->input->post('button') == 'save'){
-				$result = $this->MJenisCetak->insert($this->input->post('nama'));
+				$result = $this->MPlong->insert($this->input->post('nama'));
 				if ($result)
-					redirect('jeniscetak');
+					redirect('plong');
 			}
 
 			$this->load->view('header', $data);
-			$this->load->view('jeniscetak_edit', $data);
+			$this->load->view('plong_edit', $data);
 			$this->load->view('footer', $data);
 		} else {
 			redirect('login');
@@ -43,20 +43,20 @@ class JenisCetak extends CI_Controller {
 
 	public function edit($id) {
 		if ($_SESSION['printer']['user']['role'] == 0){
-			$data['page_title'] = 'Edit Jenis Cetakan';
+			$data['page_title'] = 'Edit Pisau Plong';
 			$data['edited'] = true;
 
-			$detail = $this->MJenisCetak->getOne($id);
+			$detail = $this->MPlong->getOne($id);
 			$data['detail'] = $detail[0];
 
 			if ($this->input->post('button') == 'save'){
-				$result = $this->MJenisCetak->update($id,$this->input->post('nama'));
+				$result = $this->MPlong->update($id,$this->input->post('nama'));
 				if ($result)
-					redirect('jeniscetak');
+					redirect('plong');
 			}
 
 			$this->load->view('header', $data);
-			$this->load->view('jeniscetak_edit', $data);
+			$this->load->view('plong_edit', $data);
 			$this->load->view('footer', $data);
 		} else {
 			redirect('login');
@@ -65,8 +65,8 @@ class JenisCetak extends CI_Controller {
 
 	public function delete($id) {
 		if ($_SESSION['printer']['user']['role'] == 0){
-			$result = $this->MJenisCetak->delete($id);
-			if ($result) redirect('jeniscetak');
+			$result = $this->MPlong->delete($id);
+			if ($result) redirect('plong');
 		} else {
 			redirect('login');
 		}
