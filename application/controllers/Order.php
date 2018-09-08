@@ -61,9 +61,11 @@ class Order extends CI_Controller {
 			if ($this->input->post('button') == 'save' && !empty($this->input->post('total_harga'))){
 				$dbeli = array();
 				foreach ($this->input->post('qty') as $key => $value) {
-					$dbeli[$key]['varian'] = $key;
-					$dbeli[$key]['qty'] = $value;
-					$dbeli[$key]['jumlah'] = $value * $barang[$key]['harga_jual'];
+					if ($value > 0){
+						$dbeli[$key]['varian'] = $key;
+						$dbeli[$key]['qty'] = $value;
+						$dbeli[$key]['jumlah'] = $value * $barang[$key]['harga_jual'];
+					}
 				}
 				// echo '<pre>'; print_r($dbeli); echo '</pre>';
 				$id = $this->MOrder->insertBeliBarang($this->input->post('total_harga'),$dbeli);

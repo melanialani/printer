@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class JenisCetak_model extends CI_Model {
+class Plong_model extends CI_Model {
 
 	public function __construct()
 	{
@@ -10,33 +10,38 @@ class JenisCetak_model extends CI_Model {
 	}
 
 	public function getAll() {
-		return $this->db->get('jenis_cetakan')->result_array();
+		return $this->db->get('plong')->result_array();
 	}
 
 	public function getOne($id) {
-		$this->db->where('id_jenis_cetakan', $id);
-		return $this->db->get('jenis_cetakan')->result_array();
+		$this->db->where('id_plong', $id);
+		return $this->db->get('plong')->result_array();
 	}
 
-	public function insert($nama) {
+	public function insert($nama,$panjang,$lebar,$harga) {
 		$record = array(
-			// 'id_jenis_cetakan' => $id,// auto-increment
-			'nama_jenis_cetakan' => $nama
+			// 'id_plong' => $id,// auto-increment
+			'nama_plong' => $nama,
+			'panjang_plong' => $panjang,
+			'lebar_plong' => $lebar,
+			'harga_plong' => $harga
 		);
-		return $this->db->insert('jenis_cetakan', $record);
+		return $this->db->insert('plong', $record);
 	}
 
-	public function update($id,$nama) {
+	public function update($id,$nama,$panjang,$lebar,$harga) {
 		$record = array(
-			// 'id_jenis_cetakan' => $id,// cannot be changed on update
-			'nama_jenis_cetakan' => $nama
+			'nama_plong' => $nama,
+			'panjang_plong' => $panjang,
+			'lebar_plong' => $lebar,
+			'harga_plong' => $harga
 		);
-		$this->db->where('id_jenis_cetakan', $id);
-		return $this->db->update('jenis_cetakan', $record);
+		$this->db->where('id_plong', $id);
+		return $this->db->update('plong', $record);
 	}
 
 	public function delete($id) {
-		$this->db->where('id_jenis_cetakan', $id);
-		return $this->db->delete('jenis_cetakan');
+		$this->db->where('id_plong', $id);
+		return $this->db->delete('plong');
 	}
 }

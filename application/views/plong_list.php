@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div align="right">
-                    <a href="<?= site_url('jeniscetak/add/'); ?>" class="btn btn-info btn-fill btn-wd">Tambah Jenis Cetak Baru</a>
+                    <a href="<?= site_url('plong/add/'); ?>" class="btn btn-info btn-fill btn-wd">Tambah Pisau Plong Baru</a>
                     <!-- <button class="btn btn-sm btn-success" style="margin-left: 2px;" onclick="goEdit()" style="margin-left: 3px;">Ubah Data</button> -->
                 </div>
                 <br/>
@@ -17,17 +17,21 @@
                             <thead><tr>
                                 <th>ID</th>
                                 <th>Nama</th>
+                                <th>Panjang x Lebar</th>
+                                <th>Harga</th>
                                 <th></th>
                             </tr></thead>
                             <tbody>
                                 <?php foreach ($row as $key => $value) {
                                     ?>
                                     <tr>
-                                        <td><?= $value['id_jenis_cetakan']; ?></td>
-                                        <td><?= $value['nama_jenis_cetakan']; ?></td>
+                                        <td><?= $value['id_plong']; ?></td>
+                                        <td><?= $value['nama_plong']; ?></td>
+                                        <td><?= $value['panjang_plong'].' x '.$value['lebar_plong']; ?></td>
+                                        <td><?= $value['harga_plong']; ?></td>
                                         <td align="center">
-                                            <a href="<?= site_url('jeniscetak/edit/'.$value['id_jenis_cetakan']); ?>" class="btn btn-waning btn-xs"><span class="ti-pencil" title="Edit"></span></a>
-                                            <a href="<?= site_url('jeniscetak/delete/'.$value['id_jenis_cetakan']); ?>" class="btn btn-danger btn-xs"><span class="ti-trash" title="Delete"></span></a>
+                                            <a href="<?= site_url('plong/edit/'.$value['id_plong']); ?>" class="btn btn-waning btn-xs"><span class="ti-pencil" title="Edit"></span></a>
+                                            <a href="<?= site_url('plong/delete/'.$value['id_plong']); ?>" class="btn btn-danger btn-xs"><span class="ti-trash" title="Delete"></span></a>
                                         </td>
                                     </tr>
                                     <?php  

@@ -28,7 +28,7 @@ class Plong extends CI_Controller {
 			$data['edited'] = false;
 
 			if ($this->input->post('button') == 'save'){
-				$result = $this->MPlong->insert($this->input->post('nama'));
+				$result = $this->MPlong->insert($this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'),$this->input->post('harga'));
 				if ($result)
 					redirect('plong');
 			}
@@ -50,7 +50,7 @@ class Plong extends CI_Controller {
 			$data['detail'] = $detail[0];
 
 			if ($this->input->post('button') == 'save'){
-				$result = $this->MPlong->update($id,$this->input->post('nama'));
+				$result = $this->MPlong->update($id,$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'),$this->input->post('harga'));
 				if ($result)
 					redirect('plong');
 			}
