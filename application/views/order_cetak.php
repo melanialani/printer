@@ -14,7 +14,7 @@
                         <?php } ?>
                             <!-- Jenis Cetakan -->
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Jenis Cetakan</label>
                                         <?php if (!$edited) { ?>
@@ -30,6 +30,27 @@
                                                     echo "<option value='". $value['id_jenis_cetakan'] . "' selected>" . $value['nama_jenis_cetakan'] . "</option>";
                                                 else 
                                                     echo "<option value='". $value['id_jenis_cetakan'] . "'>" . $value['nama_jenis_cetakan'] . "</option>";
+                                                } ?>
+                                            </select>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Laminasi</label>
+                                        <?php if (!$edited) { ?>
+                                            <select name="laminasi" id="laminasi" class="form-control border-input" required>
+                                            <?php foreach ($laminasi as $value) {
+                                                    echo "<option value='". $value['id_laminasi'] . "'>" . $value['nama_laminasi'] . "</option>";
+                                                } ?>
+                                            </select>
+                                        <?php } else { ?>
+                                            <select name="laminasi" id="laminasi" class="form-control border-input" required>
+                                            <?php foreach ($laminasi as $value) {
+                                                if ($value['id_laminasi'] == $id_jenis_cetak)
+                                                    echo "<option value='". $value['id_laminasi'] . "' selected>" . $value['nama_laminasi'] . "</option>";
+                                                else 
+                                                    echo "<option value='". $value['id_laminasi'] . "'>" . $value['nama_laminasi'] . "</option>";
                                                 } ?>
                                             </select>
                                         <?php } ?>
@@ -63,9 +84,9 @@
                                     <div class="form-group">
                                         <label>Tinggi Kertas (cm)</label>
                                         <?php if (!$edited) { ?>
-                                            <input type="number" class="form-control border-input" placeholder="1 cm"  id="tinggi" name="tinggi" required>
+                                            <input type="number" class="form-control border-input" placeholder="1 cm"  id="tinggi" name="tinggi">
                                         <?php } else { ?>
-                                            <input type="number" class="form-control border-input" placeholder="1 cm"  id="tinggi" name="tinggi" required value="<?= $tinggi; ?>">
+                                            <input type="number" class="form-control border-input" placeholder="1 cm"  id="tinggi" name="tinggi" value="<?= $tinggi; ?>">
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -157,17 +178,10 @@
                                     <div class="form-group">
                                         <!-- <label>Cetak sebanyak</label><br/> -->
                                         <?php if (!$edited) { ?>
-                                            <input type="checkbox" name="laminasi" value="laminasi"> <label>Laminasi</label></input><br/>
                                             <input type="checkbox" name="porforasi" value="porforasi"> <label>Porforasi</label></input><br/>
                                             <input type="checkbox" name="numerator" value="numerator"> <label>Numerator</label></input><br/>
                                             <input type="checkbox" name="uv" value="uv"> <label>UV</label></input>
                                         <?php } else { ?>
-                                            <?php if ($laminasi) { ?>
-                                                <input type="checkbox" name="laminasi" value="laminasi" checked> <label>Laminasi</label></input><br/>
-                                            <?php } else { ?>
-                                                <input type="checkbox" name="laminasi" value="laminasi"> <label>Laminasi</label></input><br/>
-                                            <?php } ?>
-
                                             <?php if ($porforasi) { ?>
                                                 <input type="checkbox" name="porforasi" value="porforasi" checked> <label>Porforasi</label></input><br/>
                                             <?php } else { ?>
@@ -191,7 +205,7 @@
                             </div>
 
                             <div class="text-right">
-                                <label>Barang dapat diambil pada tanggal : <?= !empty($tanggal_jadi) ? $tanggal_jadi : '-'; ?></label>
+                                <label>Barang dapat diambil pada tanggal : <?= !empty($tanggal_jadi) ? date('d M Y', strtotime($tanggal_jadi)) : '-'; ?></label>
                             </div>
                             <br/>
                             <div class="text-center">

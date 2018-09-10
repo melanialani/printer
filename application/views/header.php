@@ -169,6 +169,12 @@
                             <p>History Pesanan</p>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?= site_url('order/lstcetak'); ?>">
+                            <i class="ti-receipt"></i>
+                            <p>History Cetakan</p>
+                        </a>
+                    </li>
                 <?php } ?>
             </ul>
             

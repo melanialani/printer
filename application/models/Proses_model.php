@@ -3,10 +3,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Proses_model extends CI_Model {
 
-	public function __construct()
-	{
+	public function __construct() {
 		parent::__construct();
 		$this->load->database();
+	}
+
+	public function getComboLaminasi() {
+		$laminasi = array(
+			array(
+				'id_laminasi' => 0,
+				'nama_laminasi' => 'Tanpa Laminasi'),
+			array(
+				'id_laminasi' => 1,
+				'nama_laminasi' => 'Glossy'),
+			array(
+				'id_laminasi' => 2,
+				'nama_laminasi' => 'Dove'),
+		);
+		return $laminasi;
 	}
 
 #region proses
@@ -19,27 +33,52 @@ class Proses_model extends CI_Model {
 		return $this->db->get('proses')->result_array();
 	}
 
-	public function insertProses($jenis_cetakan,$panjang,$lebar,$tinggi,$numerator=0,$plong=0) {
+	public function insertProses($panjang,$lebar,$tinggi,$jenis_cetak,$jenis_kertas,$varian,$qty,$total,$laminasi,$plong,$numerator,$uv,$jadi) {
+		$date = date('Y-m-d H:i:s');
+
+		// generate transaction id
+		$id = preg_replace("/[^a-zA-Z0-9]/", "", strval($date));
+		$id .= 'x' . $_SESSION['printer']['user']['id_user'];
+
+		// insert ke proses
 		$record = array(
-			// 'id_proses' => $id, // auto-increment
-			'id_jenis_cetakan' => $jenis_cetakan,
+			'id_proses' => $id,
+			'id_user' => $_SESSION['printer']['user']['id_user'],
+			'id_jenis_cetakan' => $jenis_cetak,
+			'id_jenis_kertas' => $jenis_kertas,
+			'id_varian' => $varian,
+			'qty' => $qty,
+			'total_harga' => $total,
+			'laminasi' => $laminasi,
+			'numerator' => $numerator,
+			'plong' => $plong,
+			'uv' => $uv,
 			'panjang_cetak' => $panjang,
 			'lebar_cetak' => $lebar,
 			'tinggi_cetak' => $tinggi,
-			'numerator' => $numerator,
-			'plong' => $plong
+			'tanggal_dibuat' => $date,
+			'tanggal_jadi' => $jadi
 		);
 		return $this->db->insert('proses', $record);
 	}
 
-	public function updateProses($id,$jenis_cetakan,$panjang,$lebar,$tinggi,$numerator,$plong) {
+	public function updateProses($id,$panjang,$lebar,$tinggi,$jenis_cetak,$jenis_kertas,$varian,$qty,$total,$laminasi,$plong,$numerator,$uv,$jadi) {
 		$record = array(
-			'id_jenis_cetakan' => $jenis_cetakan,
+			'id_user' => $_SESSION['printer']['user']['id_user'],
+			'id_jenis_cetakan' => $jenis_cetak,
+			'id_jenis_kertas' => $jenis_kertas,
+			'id_varian' => $varian,
+			'qty' => $qty,
+			'total_harga' => $total,
+			'laminasi' => $laminasi,
+			'numerator' => $numerator,
+			'plong' => $plong,
+			'uv' => $uv,
 			'panjang_cetak' => $panjang,
 			'lebar_cetak' => $lebar,
 			'tinggi_cetak' => $tinggi,
-			'numerator' => $numerator,
-			'plong' => $plong
+			'tanggal_dibuat' => $date,
+			'tanggal_jadi' => $jadi
 		);
 		$this->db->where('id_proses', $id);
 		return $this->db->update('proses', $record);
@@ -94,8 +133,16 @@ class Proses_model extends CI_Model {
 		return $this->db->delete('detailbarangproses');
 	}
 
-#region others
-	public function insertImage($data) {
+#region image
+	public function getImageProses($id) {
+		$this->db->from('image i, user u');
+		$this->db->where('i.id_user = u.id_user');
+		$this->db->where('i.id_proses', $id);
+		$this->db->order_by('i.tanggal_upload', 'desc');
+		return $this->db->get()->result();
+	}
+
+	public function insertImage($data,$proses,$comment) {
 		$record = array(
 			'file_name' => $data['file_name'],
 	  		'file_type' => $data['file_type'],
@@ -109,7 +156,11 @@ class Proses_model extends CI_Model {
 	  		'image_width' => $data['image_width'],
 	  		'image_height' => $data['image_height'],
 	  		'image_type' => $data['image_type'],
-	  		'image_size_str' => $data['image_size_str']
+	  		'image_size_str' => $data['image_size_str'],
+	  		'id_proses' => $proses,
+	  		'id_user' => $_SESSION['printer']['user']['id_user'],
+	  		'comment' => $comment,
+	  		'tanggal_upload' => date('Y-m-d H:i:s')
 		);
 		return $this->db->insert('image', $record);
 	}
@@ -118,4 +169,28 @@ class Proses_model extends CI_Model {
 		$this->db->where('id_image', $id);
 		return $this->db->delete('image');
 	}
+
+#region others
+	public function getHistoryCetak($id=null) {
+		$this->db->from('proses p, jenis_cetakan jc, jenis_kertas jk, varian v');
+		$this->db->where('p.id_jenis_cetakan = jc.id_jenis_cetakan');
+		$this->db->where('p.id_jenis_kertas = jk.id_jenis_kertas');
+		$this->db->where('p.id_varian = v.id_varian');
+
+		if (!empty($id))
+			$this->db->where('p.id_proses', $id);
+
+		return $this->db->get()->result_array();
+	}
+
+	public function getDetailCetak($id) {
+		$this->db->from('proses p, jenis_cetakan jc, jenis_kertas jk, varian v, image i');
+		$this->db->where('p.id_jenis_cetakan = jc.id_jenis_cetakan');
+		$this->db->where('p.id_jenis_kertas = jk.id_jenis_kertas');
+		$this->db->where('p.id_varian = v.id_varian');
+		$this->db->where('p.id_proses = i.id_proses');
+		$this->db->where('p.id_proses', $id);
+		return $this->db->get()->result_array();
+	}
+
 }
