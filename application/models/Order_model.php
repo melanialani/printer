@@ -19,6 +19,10 @@ class Order_model extends CI_Model {
 	}
 
 	public function getHistoryBeli() {
+		return $this->db->get('hpembelian')->result_array();
+	}
+
+	public function getHistoryBeliClient() {
 		$this->db->where('id_user', $_SESSION['printer']['user']['id_user']);
 		return $this->db->get('hpembelian')->result_array();
 	}

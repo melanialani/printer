@@ -127,9 +127,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?= site_url('jeniscetak'); ?>">
-                            <i class="ti-view-list-alt"></i>
-                            <p>Daftar Pesanan</p>
+                        <a href="<?= site_url('order/lst'); ?>">
+                            <i class="ti-receipt"></i>
+                            <p>Daftar Order Barang</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= site_url('order/lstcetak'); ?>">
+                            <i class="ti-receipt"></i>
+                            <p>Daftar Order Cetakan</p>
                         </a>
                     </li>
                 <?php } else if (!empty($_SESSION['printer']['user']) && $_SESSION['printer']['user']['role'] == 2) { ?>
@@ -157,12 +163,12 @@
                             <p>Order Cetakan</p>
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="<?= site_url('order/upload'); ?>">
                             <i class="ti-file"></i>
                             <p>Upload File</p>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="<?= site_url('order/lst'); ?>">
                             <i class="ti-receipt"></i>

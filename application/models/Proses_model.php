@@ -183,6 +183,19 @@ class Proses_model extends CI_Model {
 		return $this->db->get()->result_array();
 	}
 
+	public function getHistoryCetakClient($id=null) {
+		$this->db->from('proses p, jenis_cetakan jc, jenis_kertas jk, varian v');
+		$this->db->where('p.id_jenis_cetakan = jc.id_jenis_cetakan');
+		$this->db->where('p.id_jenis_kertas = jk.id_jenis_kertas');
+		$this->db->where('p.id_varian = v.id_varian');
+		$this->db->where('p.id_user', $_SESSION['printer']['user']['id_user']);
+
+		if (!empty($id))
+			$this->db->where('p.id_proses', $id);
+
+		return $this->db->get()->result_array();
+	}
+
 	public function getDetailCetak($id) {
 		$this->db->from('proses p, jenis_cetakan jc, jenis_kertas jk, varian v, image i');
 		$this->db->where('p.id_jenis_cetakan = jc.id_jenis_cetakan');

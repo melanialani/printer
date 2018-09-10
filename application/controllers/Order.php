@@ -8,11 +8,14 @@ class Order extends CI_Controller {
 	}
 
 	public function lst() {
-		if ($_SESSION['printer']['user']['role'] == 2){
+		if ($_SESSION['printer']['user']['role']){
 			$data['page_title'] = 'Daftar Pembelian';
 			$data['page_note'] = 'Daftar seluruh transaksi yang telah dilakukan user';
 
-			$data['row'] = $this->MOrder->getHistoryBeli();
+			if ($_SESSION['printer']['user']['role'] == 2) // client
+				$data['row'] = $this->MOrder->getHistoryBeliClient();
+			else if ($_SESSION['printer']['user']['role'] == 1) // pegawai
+				$data['row'] = $this->MOrder->getHistoryBeli();
 
 			$this->load->view('header', $data);
 			$this->load->view('historybeli_list', $data);
@@ -23,7 +26,7 @@ class Order extends CI_Controller {
 	}
 
 	public function detail($id=null) {
-		if ($_SESSION['printer']['user']['role'] == 2){
+		if ($_SESSION['printer']['user']['role']){
 			$data['page_title'] = 'Detail Pembelian';
 			$data['page_note'] = 'Rincian transaksi pembelian';
 
@@ -40,11 +43,14 @@ class Order extends CI_Controller {
 	}
 
 	public function lstcetak() {
-		if ($_SESSION['printer']['user']['role'] == 2){
+		if ($_SESSION['printer']['user']['role']){
 			$data['page_title'] = 'Daftar Order Cetakan';
 			$data['page_note'] = 'Daftar seluruh order cetakan yang pernah dimasukkan user';
 
-			$data['row'] = $this->MProses->getHistoryCetak();
+			if ($_SESSION['printer']['user']['role'] == 2) // client
+				$data['row'] = $this->MProses->getHistoryCetakClient();
+			else if ($_SESSION['printer']['user']['role'] == 1) // pegawai
+				$data['row'] = $this->MProses->getHistoryCetak();
 
 			$this->load->view('header', $data);
 			$this->load->view('historycetak_list', $data);
@@ -55,7 +61,7 @@ class Order extends CI_Controller {
 	}
 
 	public function detailcetak($id=null) {
-		if ($_SESSION['printer']['user']['role'] == 2){
+		if ($_SESSION['printer']['user']['role']){
 			$data['page_title'] = 'Detail Pembelian';
 			$data['page_note'] = 'Rincian transaksi pembelian';
 			$data['edited'] = 'detail';
@@ -211,60 +217,6 @@ class Order extends CI_Controller {
 		}
 	}
 
-	public function add() {
-		if ($_SESSION['printer']['user']['role'] == 2){
-			$data['page_title'] = 'Tambah Ukuran Kertas Baru';
-			$data['edited'] = false;
-
-			$data['barang'] = $this->MBarang->getAll();
-
-			if ($this->input->post('button') == 'save'){
-				$result = $this->MUkuranKertas->insert($this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
-				if ($result)
-					redirect('ukurankertas');
-			}
-
-			$this->load->view('header', $data);
-			$this->load->view('ukurankertas_edit', $data);
-			$this->load->view('footer', $data);
-		} else {
-			redirect('login');
-		}
-	}
-
-	public function edit($id) {
-		if ($_SESSION['printer']['user']['role'] == 2){
-			$data['page_title'] = 'Edit Ukuran Kertas';
-			$data['edited'] = true;
-
-			$data['barang'] = $this->MBarang->getAll();
-
-			$detail = $this->MUkuranKertas->getOne($id);
-			$data['detail'] = $detail[0];
-
-			if ($this->input->post('button') == 'save'){
-				$result = $this->MUkuranKertas->update($id,$this->input->post('barang'),$this->input->post('nama'),$this->input->post('panjang'),$this->input->post('lebar'));
-				if ($result)
-					redirect('ukurankertas');
-			}
-
-			$this->load->view('header', $data);
-			$this->load->view('ukurankertas_edit', $data);
-			$this->load->view('footer', $data);
-		} else {
-			redirect('login');
-		}
-	}
-
-	public function delete($id) {
-		if ($_SESSION['printer']['user']['role'] == 2){
-			$result = $this->MUkuranKertas->delete($id);
-			if ($result) redirect('ukurankertas');
-		} else {
-			redirect('login');
-		}
-	}
-
 	public function upload() {
 		if (!empty($_SESSION['printer']['user']['role'])){
 			$data['page_title'] = 'Upload File';
@@ -313,9 +265,9 @@ class Order extends CI_Controller {
 	}
 
 	public function deleteImage($id) {
-		if ($_SESSION['printer']['user']['role'] == 2){
+		if ($_SESSION['printer']['user']['role']){
 			$result = $this->MProses->deleteImage($id);
-			if ($result) redirect('order/upload');
+			if ($result) redirect('order/lstcetak');
 		} else {
 			redirect('login');
 		}
