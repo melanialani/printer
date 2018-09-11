@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2018 at 04:43 PM
+-- Generation Time: Sep 11, 2018 at 02:34 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -32,6 +32,29 @@ CREATE TABLE `barang_hpembelian` (
   `id_varian` int(11) NOT NULL,
   `id_trans` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `id_comment` int(11) NOT NULL,
+  `id_image` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `tanggal_dibuat` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id_comment`, `id_image`, `id_user`, `comment`, `tanggal_dibuat`) VALUES
+(2, 14, 2, 'kurang kiri', '2018-09-11 19:16:09'),
+(4, 14, 2, 'kurang kanan', '2018-09-11 19:31:55'),
+(5, 13, 2, 'jelek', '2018-09-11 19:32:56');
 
 -- --------------------------------------------------------
 
@@ -169,7 +192,7 @@ INSERT INTO `hpembelian` (`id_trans`, `id_user`, `tanggal_trans`, `total_harga`,
 ('20180903211935x3', 3, '2018-09-03 21:19:35', 895000, 'john'),
 ('20180903211946x3', 3, '2018-09-03 21:19:46', 895000, 'john'),
 ('20180903220513x3', 3, '2018-09-03 22:05:13', 15000, 'john'),
-('20180903220714x3', 3, '2018-09-03 22:07:14', 0, 'john'),
+('20180903220714x3', 2, '2018-09-03 22:07:14', 0, 'mary jane'),
 ('20180903220909x3', 3, '2018-09-03 22:09:09', 4500, 'john'),
 ('20180908231816x3', 3, '2018-09-08 23:18:16', 150000, 'john'),
 ('20180908232012x3', 3, '2018-09-08 23:20:12', 150000, 'john');
@@ -206,7 +229,11 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`id_image`, `file_name`, `file_type`, `file_path`, `full_path`, `raw_name`, `orig_name`, `client_name`, `file_ext`, `file_size`, `image_width`, `image_height`, `image_type`, `image_size_str`, `id_proses`, `id_user`, `comment`, `tanggal_upload`) VALUES
-(9, '18251920x1080jpg.jpg', 'image/jpeg', 'C:/xampp/htdocs/printer/upload/', 'C:/xampp/htdocs/printer/upload/18251920x1080jpg.jpg', '18251920x1080jpg', '18251920x1080jpg.jpg', '1825_1920x1080.jpg', '.jpg', '662.86', '1920', '1080', 'jpeg', 'width=\"1920\" height=\"1080\"', NULL, 0, NULL, '2018-09-10 20:19:01');
+(9, '18251920x1080jpg.jpg', 'image/jpeg', 'C:/xampp/htdocs/printer/upload/', 'C:/xampp/htdocs/printer/upload/18251920x1080jpg.jpg', '18251920x1080jpg', '18251920x1080jpg.jpg', '1825_1920x1080.jpg', '.jpg', '662.86', '1920', '1080', 'jpeg', 'width=\"1920\" height=\"1080\"', NULL, 0, NULL, '2018-09-10 20:19:01'),
+(10, '166178jpg.jpg', 'image/jpeg', 'C:/xampp/htdocs/printer/upload/', 'C:/xampp/htdocs/printer/upload/166178jpg.jpg', '166178jpg', '166178jpg.jpg', '166178.jpg', '.jpg', '899.81', '2560', '1600', 'jpeg', 'width=\"2560\" height=\"1600\"', '20180910215416x3', 3, NULL, '2018-09-10 23:14:38'),
+(11, '91df15e7b476f632032c155a98949e31bibleversesjpg.jpg', 'image/jpeg', 'C:/xampp/htdocs/printer/upload/', 'C:/xampp/htdocs/printer/upload/91df15e7b476f632032c155a98949e31bibleversesjpg.jpg', '91df15e7b476f632032c155a98949e31bibleversesjpg', '91df15e7b476f632032c155a98949e31bibleversesjpg.jpg', '91df15e7b476f632032c155a98949e31bible-verses.jpg', '.jpg', '962.83', '1920', '1080', 'jpeg', 'width=\"1920\" height=\"1080\"', '20180910215416x3', 3, 'ephesians', '2018-09-10 23:20:52'),
+(13, 'adbjpg.jpg', 'image/jpeg', 'C:/xampp/htdocs/printer/upload/', 'C:/xampp/htdocs/printer/upload/adbjpg.jpg', 'adbjpg', 'adbjpg.jpg', 'adb.jpg', '.jpg', '63.02', '480', '251', 'jpeg', 'width=\"480\" height=\"251\"', '20180910215416x3', 2, '', '2018-09-10 23:45:12'),
+(14, 'MyersBriggsTypespng.png', 'image/png', 'C:/xampp/htdocs/printer/upload/', 'C:/xampp/htdocs/printer/upload/MyersBriggsTypespng.png', 'MyersBriggsTypespng', 'MyersBriggsTypespng.png', 'MyersBriggsTypes.png', '.png', '483.42', '1280', '720', 'png', 'width=\"1280\" height=\"720\"', '20180910215416x3', 2, 'types', '2018-09-10 23:45:36');
 
 -- --------------------------------------------------------
 
@@ -349,7 +376,10 @@ CREATE TABLE `proses` (
 --
 
 INSERT INTO `proses` (`id_proses`, `id_user`, `id_jenis_cetakan`, `id_jenis_kertas`, `id_varian`, `qty`, `total_harga`, `laminasi`, `numerator`, `plong`, `uv`, `panjang_cetak`, `lebar_cetak`, `tinggi_cetak`, `tanggal_dibuat`, `tanggal_jadi`) VALUES
-('2018091021', 3, 2, 2, 2, 1, NULL, 2, NULL, 0, 0, 25, 10, 0, '2018-09-10 21:35:18', '0000-00-00 00:00:00');
+('20180910214937x3', 3, 2, 2, 2, 250, 390000, 2, 1, 0, 1, 10, 10, 1, '2018-09-10 21:49:37', '0000-00-00 00:00:00'),
+('20180910214987x3', 3, 2, 2, 2, 250, 390000, 2, 1, 0, 1, 10, 10, 1, '2018-09-10 21:49:37', '0000-00-00 00:00:00'),
+('20180910215416x3', 2, 1, 2, 2, 3, 32000, 1, 0, 1, 1, 25, 12, 0, '2018-09-10 21:54:16', '2018-09-13 21:54:16'),
+('20180910215643x3', 3, 1, 2, 2, 3, 32000, 1, 0, 1, 1, 25, 12, 0, '2018-09-10 21:56:43', '2018-09-13 21:56:43');
 
 -- --------------------------------------------------------
 
@@ -442,6 +472,14 @@ INSERT INTO `varian` (`id_varian`, `id_jenis_barang`, `id_ukuran_kertas`, `id_je
 ALTER TABLE `barang_hpembelian`
   ADD PRIMARY KEY (`id_varian`,`id_trans`),
   ADD KEY `fk_barang_hpembelian2` (`id_trans`);
+
+--
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id_comment`),
+  ADD KEY `fk_comment_image` (`id_image`),
+  ADD KEY `fk_comment_user` (`id_user`);
 
 --
 -- Indexes for table `detailbarangproses`
@@ -565,6 +603,12 @@ ALTER TABLE `varian`
 --
 
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
@@ -574,7 +618,7 @@ ALTER TABLE `history`
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `jenis_barang`
@@ -640,6 +684,13 @@ ALTER TABLE `varian`
 ALTER TABLE `barang_hpembelian`
   ADD CONSTRAINT `fk_barang_hpembelian` FOREIGN KEY (`id_varian`) REFERENCES `varian` (`id_varian`),
   ADD CONSTRAINT `fk_barang_hpembelian2` FOREIGN KEY (`id_trans`) REFERENCES `hpembelian` (`id_trans`);
+
+--
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `fk_comment_image` FOREIGN KEY (`id_image`) REFERENCES `image` (`id_image`),
+  ADD CONSTRAINT `fk_comment_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Constraints for table `detailbarangproses`
