@@ -170,6 +170,30 @@ class Proses_model extends CI_Model {
 		return $this->db->delete('image');
 	}
 
+#region comment image
+	public function getCommentImage($id) {
+		$this->db->from('comment c, user u');
+		$this->db->where('c.id_user = u.id_user');
+		$this->db->where('c.id_image', $id);
+		$this->db->order_by('c.tanggal_dibuat', 'desc');
+		return $this->db->get()->result_array();
+	}
+
+	public function insertComment($image,$comment) {
+		$record = array(
+	  		'id_image' => $image,
+	  		'id_user' => $_SESSION['printer']['user']['id_user'],
+	  		'comment' => $comment,
+	  		'tanggal_dibuat' => date('Y-m-d H:i:s')
+		);
+		return $this->db->insert('comment', $record);
+	}
+
+	public function deleteComment($id) {
+		$this->db->where('id_comment', $id);
+		return $this->db->delete('comment');
+	}
+
 #region others
 	public function getHistoryCetak($id=null) {
 		$this->db->from('proses p, jenis_cetakan jc, jenis_kertas jk, varian v');

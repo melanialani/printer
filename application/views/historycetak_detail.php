@@ -162,44 +162,86 @@
                             </table>
                         </form>
 
-                        <br/><br/>
+                        <br/>
 
-                        <table id="myTable" class="table table-striped">
-                            <thead><tr>
-                                <th></th>
-                                <th align="center">Tanggal Upload</th>
-                                <!-- <th align="center" width="5%">File Name</th> -->
-                                <th align="center">File Type</th>
-                                <!-- <th align="center">Full Path</th> -->
-                                <th align="center">File Size</th>
-                                <th align="center">Diupload oleh</th>
-                                <th align="center" width="20%">Comment</th>
-                                <th></th>
-                                <th></th>
-                            </tr></thead>
-                            <tbody>
-                                <?php if (!empty($row)) {
-                                foreach ($row as $data) {
-                                    ?>
-                                    <tr>
-                                        <td align="center"><?= img(array('src' => 'upload/'.$data->file_name, 'width' => '80', 'height' => '50', 'title' => $data->file_name)); ?></td>
-                                        <td><?= $data->tanggal_upload; ?></td>
-                                        <!-- <td><?= $data->file_name; ?></td> -->
-                                        <td><?= $data->file_type; ?></td>
-                                        <!-- <td><?= $data->full_path; ?></td> -->
-                                        <td align="center"><?= $data->file_size; ?></td>
-                                        <td><?= !empty($data->nama_user) ? $data->nama_user : $data->username; ?></td>
-                                        <td><?= $data->comment; ?></td>
-                                        <td align="center"><?= anchor('order/download_file/'.$data->file_name, 'Download'); ?></td>
-                                        <td align="center">
-                                            <!-- <a href="<?= site_url('order/editImage/'.$data->id_image); ?>" class="btn btn-waning btn-xs"><span class="ti-pencil" title="Edit"></span></a> -->
-                                            <a href="<?= site_url('order/deleteImage/'.$data->id_image); ?>" class="btn btn-danger btn-xs"><span class="ti-trash" title="Delete"></span></a>
-                                        </td>
-                                    </tr>
-                                    <?php  
-                                } } ?>
-                            </tbody>
-                        </table>
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">File Upload History</h4>
+                            </div>
+                            <div class="content">
+                                <ul class="list-unstyled team-members">
+                                    <?php if (!empty($row)) { foreach ($row as $data) { ?>
+
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group" align="center">
+                                                        <?= img(array('src' => 'upload/'.$data->file_name, 'width' => '80', 'height' => '50', 'title' => $data->file_name)); ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <?= !empty($data->nama_user) ? $data->nama_user : $data->username; ?>
+                                                        <br/>
+                                                        <span class="text-muted"><small><?= $data->tanggal_upload; ?></small></span>
+                                                        <br/>
+                                                        <span class="text-success"><small><?= $data->file_type; ?> - <?= $data->file_size; ?> Kb</small></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <?= anchor('order/download_file/'.$data->file_name, 'Download'); ?>
+                                                        <br/>
+                                                        Message: <?= $data->comment ? $data->comment : '-'; ?>
+                                                        <br/>
+                                                        <a href="<?= site_url('order/deleteImage/'.$data->id_image); ?>" class="text-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Display all comments -->
+                                            <?php if (!empty($comment[$data->id_image])) { foreach ($comment[$data->id_image] as $key => $value) { ?>
+                                                <div class="row">
+                                                    <div class="col-md-6" align="right">
+                                                        <label><strong>Comment</strong></label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <?= $value['comment']; ?>
+                                                            <br/>
+                                                            <span class="text-muted"><small><?= $value['tanggal_dibuat']; ?></small></span>
+                                                            <br/>
+                                                            <span class="text-success"><small><?= !empty($value['nama_user']) ? $value['nama_user'] : $value['username']; ?></small></span>
+                                                            -
+                                                            <a href="<?= site_url('order/deleteComment/'.$value['id_comment']); ?>" class="text-danger"><small>Delete Comment</small></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php } } ?>
+                                            
+                                            <!-- Add new comment section -->
+                                            <div class="row">
+                                                <?= form_open('order/detailcetak/'.$proses['id_proses']); ?>
+                                                <div class="col-md-6" align="right"></div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control border-input" placeholder="tambah comment"  id="newcomment" name="newcomment">
+                                                        <input type="hidden" id="id_image" name="id_image" value="<?= $data->id_image; ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group" style="margin-top: 5px;">
+                                                        <button type="submit" class="btn btn-info btn-fill btn-xs" value="savenewcomment" id="button" name="button"><span class="ti-check" title="Simpan"></span></button>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </li>
+
+                                    <?php } } ?>
+                                </ul>
+                            </div>
+                        </div>
 
                         <div class="clearfix"></div>
                     </div>

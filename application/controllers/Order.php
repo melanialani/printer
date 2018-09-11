@@ -73,6 +73,20 @@ class Order extends CI_Controller {
 			$trans = $this->MProses->getHistoryCetak($id);
 			$data['proses'] = $trans[0];
 
+		   	$data['row'] = $this->MProses->getImageProses($id);
+
+		   	$comment = array();
+		   	foreach ($data['row'] as $row) {
+		   		$result = $this->MProses->getCommentImage($row->id_image);
+		   		foreach ($result as $key => $value) {
+		   			$comment[$row->id_image][$value['id_comment']] = $value;
+		   		}
+		   	}
+		   	$data['comment'] = $comment;
+
+		   	// echo '<pre>'; print_r($data); echo '</pre>';
+
+			// upload file baru
 			if (!empty($_FILES["file_name"])){
 			   	$config = array(
 			     	'upload_path' => 'upload/',
@@ -94,13 +108,25 @@ class Order extends CI_Controller {
 			 		else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
 			     	redirect('order/detailcetak/'.$id);
 		        }
+			} else if ($this->input->post('button') == 'savenewcomment'){
+				$result = $this->MProses->insertComment($this->input->post('id_image'),$this->input->post('newcomment'));
+				if ($result) $this->session->set_flashdata('msg', 'Comment berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detailcetak/'.$id);
 			}
-
-		   	$data['row'] = $this->MProses->getImageProses($id);
 
 			$this->load->view('header', $data);
 			$this->load->view('historycetak_detail', $data);
 			$this->load->view('footer', $data);
+		} else {
+			redirect('login');
+		}
+	}
+
+	public function deleteComment($id) {
+		if ($_SESSION['printer']['user']['role']){
+			$result = $this->MProses->deleteComment($id);
+			if ($result) redirect('order/lstcetak');
 		} else {
 			redirect('login');
 		}
@@ -134,7 +160,7 @@ class Order extends CI_Controller {
 						$dbeli[$key]['jumlah'] = $value * $barang[$key]['harga_jual'];
 					}
 				}
-				// echo '<pre>'; print_r($dbeli); echo '</pre>';
+
 				$id = $this->MOrder->insertBeliBarang($this->input->post('total_harga'),$dbeli);
 				redirect('order/detail/'.$id,'refresh');
 			}
