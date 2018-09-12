@@ -69,7 +69,8 @@ class Order extends CI_Controller {
 			$data['jenis_cetak'] = $this->MJenisCetak->getAll();
 			$data['jenis_kertas'] = $this->MJenisKertas->getCombo();
 			$data['laminasi'] = $this->MProses->getComboLaminasi();
-
+			$data['varian'] = $this->MBarang->getAll();
+			
 			$trans = $this->MProses->getHistoryCetak($id);
 			$data['proses'] = $trans[0];
 
@@ -230,7 +231,8 @@ class Order extends CI_Controller {
 
                     // masukin ke db
                     if ($this->input->post('button') == 'save'){
-                    	$result = $this->MProses->insertProses($data['panjang'],$data['lebar'],$data['tinggi'],$data['id_jenis_cetak'],$data['id_jenis_kertas'],$data['id_varian'],$data['qty'],$data['total'],$data['id_laminasi'],$data['porforasi'],$data['numerator'],$data['uv'],$data['tanggal_jadi']);
+                    	$id = $this->MProses->insertProses($data['panjang'],$data['lebar'],$data['tinggi'],$data['id_jenis_cetak'],$data['id_jenis_kertas'],$data['id_varian'],$data['qty'],$data['total'],$data['id_laminasi'],$data['porforasi'],$data['numerator'],$data['uv'],$data['tanggal_jadi']);
+                    	redirect('order/detailcetak/'.$id,'refresh');
                     }
 				}
 			}

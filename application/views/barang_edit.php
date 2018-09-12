@@ -27,9 +27,9 @@
                                 </div>
                             </div>
 
-                            <!-- JENIS BARANG & JENIS KERTAS & UKURAN KERTAS  -->
+                            <!-- JENIS BARANG -->
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Jenis Barang</label>
                                         <?php if (!$edited) { ?>
@@ -50,7 +50,11 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                            </div>
+
+                            <!-- JENIS KERTAS & UKURAN KERTAS -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Jenis Kertas</label>
                                         <?php if (!$edited) { ?>
@@ -71,7 +75,11 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                            </div>
+
+                            <!-- UKURAN KERTAS -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Ukuran Kertas</label>
                                         <?php if (!$edited) { ?>
@@ -94,9 +102,9 @@
                                 </div>
                             </div>
 
-                            <!-- STOCK AWAL & STOCK -->
+                            <!-- STOCK AWAL -->
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Stock Awal</label>
                                         <?php if (!$edited) { ?>
@@ -106,7 +114,11 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+
+                            <!-- STOCK -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Stock</label>
                                         <?php if (!$edited) { ?>
@@ -118,9 +130,9 @@
                                 </div>
                             </div>
 
-                            <!-- JUMLAH & WARNING & WARNA -->
+                            <!-- JUMLAH -->
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Jumlah</label>
                                         <?php if (!$edited) { ?>
@@ -130,9 +142,13 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                            </div>
+
+                            <!-- WARNING STOCK -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label title="Notifikasi jumlah barang menipis">Jumlah Warning</label>
+                                        <label title="Notifikasi jumlah barang menipis">Jumlah Warning Stock</label>
                                         <?php if (!$edited) { ?>
                                             <input type="number" class="form-control border-input" placeholder="100" id="warning" name="warning" value="100">
                                         <?php } else { ?>
@@ -140,7 +156,11 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                            </div>
+
+                            <!-- WARNA -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Warna</label>
                                         <?php if (!$edited) { ?>
@@ -152,9 +172,9 @@
                                 </div>
                             </div>
 
-                            <!-- HARGA BELI & HARGA JUAL -->
+                            <!-- HARGA BELI -->
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Harga Beli</label>
                                         <?php if (!$edited) { ?>
@@ -164,7 +184,11 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+
+                            <!-- HARGA JUAL -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Harga Jual</label>
                                         <?php if (!$edited) { ?>

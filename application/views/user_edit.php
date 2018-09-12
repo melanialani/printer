@@ -12,19 +12,9 @@
                         <?php } else { ?>
                             <?= form_open('user/edit/'.$detail['id_user']); ?>
                         <?php } ?>
-                            <!-- FULL NAME & ROLE -->
+                            <!-- ROLE -->
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nama Lengkap</label>
-                                        <?php if (!$edited) { ?>
-                                            <input type="text" class="form-control border-input" placeholder="John Doe" id="nama" name="nama" required>
-                                        <?php } else { ?>
-                                            <input type="text" class="form-control border-input" placeholder="John Doe" id="nama" name="nama" required value="<?= $detail['nama_user'] ?>">
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Role User</label>
                                         <?php if (!$edited) { ?>
@@ -49,9 +39,23 @@
                                 </div>
                             </div>
 
-                            <!-- USERNAME & PASSWORD -->
+                            <!-- FULL NAME -->
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Nama Lengkap</label>
+                                        <?php if (!$edited) { ?>
+                                            <input type="text" class="form-control border-input" placeholder="John Doe" id="nama" name="nama" required>
+                                        <?php } else { ?>
+                                            <input type="text" class="form-control border-input" placeholder="John Doe" id="nama" name="nama" required value="<?= $detail['nama_user'] ?>">
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- USERNAME -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Username</label>
                                         <?php if (!$edited) { ?>
@@ -61,7 +65,11 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+
+                            <!-- PASSWORD -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Password Awal</label>
                                         <?php if (!$edited) { ?>
@@ -73,9 +81,9 @@
                                 </div>
                             </div>
 
-                            <!-- EMAIL & HP -->
+                            <!-- EMAIL -->
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Email</label>
                                         <?php if (!$edited) { ?>
@@ -85,7 +93,11 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+
+                            <!-- HP -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>No. HP</label>
                                         <?php if (!$edited) { ?>

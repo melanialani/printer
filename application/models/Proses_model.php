@@ -59,7 +59,11 @@ class Proses_model extends CI_Model {
 			'tanggal_dibuat' => $date,
 			'tanggal_jadi' => $jadi
 		);
-		return $this->db->insert('proses', $record);
+		$result = $this->db->insert('proses', $record);
+
+		if ($result)
+			return $id;
+		return false;
 	}
 
 	public function updateProses($id,$panjang,$lebar,$tinggi,$jenis_cetak,$jenis_kertas,$varian,$qty,$total,$laminasi,$plong,$numerator,$uv,$jadi) {

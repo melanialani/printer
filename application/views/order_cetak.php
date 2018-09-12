@@ -14,7 +14,7 @@
                         <?php } ?>
                             <!-- Jenis Cetakan -->
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Jenis Cetakan</label>
                                         <?php if (!$edited) { ?>
@@ -30,27 +30,6 @@
                                                     echo "<option value='". $value['id_jenis_cetakan'] . "' selected>" . $value['nama_jenis_cetakan'] . "</option>";
                                                 else 
                                                     echo "<option value='". $value['id_jenis_cetakan'] . "'>" . $value['nama_jenis_cetakan'] . "</option>";
-                                                } ?>
-                                            </select>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Laminasi</label>
-                                        <?php if (!$edited) { ?>
-                                            <select name="laminasi" id="laminasi" class="form-control border-input" required>
-                                            <?php foreach ($laminasi as $value) {
-                                                    echo "<option value='". $value['id_laminasi'] . "'>" . $value['nama_laminasi'] . "</option>";
-                                                } ?>
-                                            </select>
-                                        <?php } else { ?>
-                                            <select name="laminasi" id="laminasi" class="form-control border-input" required>
-                                            <?php foreach ($laminasi as $value) {
-                                                if ($value['id_laminasi'] == $id_jenis_cetak)
-                                                    echo "<option value='". $value['id_laminasi'] . "' selected>" . $value['nama_laminasi'] . "</option>";
-                                                else 
-                                                    echo "<option value='". $value['id_laminasi'] . "'>" . $value['nama_laminasi'] . "</option>";
                                                 } ?>
                                             </select>
                                         <?php } ?>
@@ -92,10 +71,9 @@
                                 </div>
                             </div>
 
-
-                            <!-- Jenis Kertas & Varian -->
+                            <!-- Jenis Kertas -->
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Jenis Kertas</label>
                                         <?php if (!$edited) { ?>
@@ -118,7 +96,11 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+
+                            <!-- Varian -->
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Nama Bahan</label>
                                         <?php if (!$edited) { ?>
@@ -136,6 +118,31 @@
                                                     echo "<option value='". $value['id_varian'] . "' selected>" . $value['nama_varian'] . ' - ' . $value['warna'] . "</option>";
                                                 else 
                                                     echo "<option value='". $value['id_varian'] . "'>" . $value['nama_varian'] . ' - ' . $value['warna'] . "</option>";
+                                                } ?>
+                                            </select>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Laminasi -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Laminasi</label>
+                                        <?php if (!$edited) { ?>
+                                            <select name="laminasi" id="laminasi" class="form-control border-input" required>
+                                            <?php foreach ($laminasi as $value) {
+                                                    echo "<option value='". $value['id_laminasi'] . "'>" . $value['nama_laminasi'] . "</option>";
+                                                } ?>
+                                            </select>
+                                        <?php } else { ?>
+                                            <select name="laminasi" id="laminasi" class="form-control border-input" required>
+                                            <?php foreach ($laminasi as $value) {
+                                                if ($value['id_laminasi'] == $id_jenis_cetak)
+                                                    echo "<option value='". $value['id_laminasi'] . "' selected>" . $value['nama_laminasi'] . "</option>";
+                                                else 
+                                                    echo "<option value='". $value['id_laminasi'] . "'>" . $value['nama_laminasi'] . "</option>";
                                                 } ?>
                                             </select>
                                         <?php } ?>
