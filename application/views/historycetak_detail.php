@@ -9,7 +9,7 @@
                     <div class="content">
                         <!-- Jenis Cetakan -->
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Jenis Cetakan</label>
                                     <select name="jenis_cetak" id="jenis_cetak" class="form-control border-input" disabled>
@@ -18,19 +18,6 @@
                                             echo "<option value='". $value['id_jenis_cetakan'] . "' selected>" . $value['nama_jenis_cetakan'] . "</option>";
                                         else 
                                             echo "<option value='". $value['id_jenis_cetakan'] . "'>" . $value['nama_jenis_cetakan'] . "</option>";
-                                        } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Laminasi</label>
-                                    <select name="laminasi" id="laminasi" class="form-control border-input" disabled>
-                                    <?php foreach ($laminasi as $value) {
-                                        if ($value['id_laminasi'] == $proses['laminasi'])
-                                            echo "<option value='". $value['id_laminasi'] . "' selected>" . $value['nama_laminasi'] . "</option>";
-                                        else 
-                                            echo "<option value='". $value['id_laminasi'] . "'>" . $value['nama_laminasi'] . "</option>";
                                         } ?>
                                     </select>
                                 </div>
@@ -59,9 +46,9 @@
                             </div>
                         </div>
 
-                        <!-- Jenis Kertas & Varian -->
+                        <!-- Jenis Kertas -->
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Jenis Kertas</label>
                                     <select name="jenis_kertas" id="jenis_kertas" class="form-control border-input" disabled>
@@ -74,15 +61,36 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                        </div>
+
+                        <!-- Varian -->
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Nama Bahan</label>
                                     <select name="varian" id="varian" class="form-control border-input" disabled>
-                                    <?php foreach ($varian as $proses['id_varian']) {
-                                        if ($value['id_varian'] == $id_varian)
+                                    <?php foreach ($varian as $value) {
+                                        if ($value['id_varian'] == $proses['id_varian'])
                                             echo "<option value='". $value['id_varian'] . "' selected>" . $value['nama_varian'] . ' - ' . $value['warna'] . "</option>";
                                         else 
                                             echo "<option value='". $value['id_varian'] . "'>" . $value['nama_varian'] . ' - ' . $value['warna'] . "</option>";
+                                        } ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Laminasi -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Laminasi</label>
+                                    <select name="laminasi" id="laminasi" class="form-control border-input" disabled>
+                                    <?php foreach ($laminasi as $value) {
+                                        if ($value['id_laminasi'] == $proses['laminasi'])
+                                            echo "<option value='". $value['id_laminasi'] . "' selected>" . $value['nama_laminasi'] . "</option>";
+                                        else 
+                                            echo "<option value='". $value['id_laminasi'] . "'>" . $value['nama_laminasi'] . "</option>";
                                         } ?>
                                     </select>
                                 </div>
