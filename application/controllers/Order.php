@@ -74,6 +74,7 @@ class Order extends CI_Controller {
 			$trans = $this->MProses->getHistoryCetak($id);
 			$data['proses'] = $trans[0];
 
+			$data['pesan'] = $this->MProses->getPesanProses($id);
 		   	$data['row'] = $this->MProses->getImageProses($id);
 
 		   	$comment = array();
@@ -109,9 +110,44 @@ class Order extends CI_Controller {
 			 		else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
 			     	redirect('order/detailcetak/'.$id);
 		        }
-			} else if ($this->input->post('button') == 'savenewcomment'){
+			} else if ($this->input->post('button') == 'savenewcomment'){ // save comment on image, left by client or admin alike
 				$result = $this->MProses->insertComment($this->input->post('id_image'),$this->input->post('newcomment'));
 				if ($result) $this->session->set_flashdata('msg', 'Comment berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detailcetak/'.$id);
+			} else if ($this->input->post('button') == 'savenewmessage'){ // save message left by client or admin alike
+				$result = $this->MProses->insertPesan($this->input->post('id_proses'),$this->input->post('newmessage'));
+				if ($result) $this->session->set_flashdata('msg', 'Pesan berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detailcetak/'.$id);
+			} else if ($this->input->post('button') == 'savenewprice'){ // admin can change price total after nego
+				$result = $this->MProses->updateHargaProses($this->input->post('id_proses'),$this->input->post('newprice'));
+				if ($result) $this->session->set_flashdata('msg', 'Perubahan total harga berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detailcetak/'.$id);
+			} else if ($this->input->post('button') == 'continuetodesign'){ // deal harga, continue to upload design
+				$result = $this->MProses->changeProsesStatus($this->input->post('id_proses'),3);
+				if ($result) $this->session->set_flashdata('msg', 'Deal total harga berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detailcetak/'.$id);
+			} else if ($this->input->post('button') == 'continuetoprint'){ // payment confirmation - save to db hbeli & dbeli proses
+				$result = $this->MProses->changeProsesStatus($this->input->post('id_proses'),4);
+				if ($result) $this->session->set_flashdata('msg', 'Deal desain terakhir berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detailcetak/'.$id);
+			} else if ($this->input->post('button') == 'continuetoprint2'){ // deal harga, continue to upload design
+				$result = $this->MProses->changeProsesStatus($this->input->post('id_proses'),5);
+				if ($result) $this->session->set_flashdata('msg', 'Menuju ke proses cetak desain!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detailcetak/'.$id);
+			} else if ($this->input->post('button') == 'continuetodone'){ // printing is done, customer have to pick it up
+				$result = $this->MProses->changeProsesStatus($this->input->post('id_proses'),6);
+				if ($result) $this->session->set_flashdata('msg', 'Proses cetak desain telah selesai!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detailcetak/'.$id);
+			} else if ($this->input->post('button') == 'continuetodone2'){ // mark this proses as done
+				$result = $this->MProses->changeProsesStatus($this->input->post('id_proses'),7);
+				if ($result) $this->session->set_flashdata('msg', 'Penutupan proses berhasil di input!');
 				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
 		    	redirect('order/detailcetak/'.$id);
 			}
@@ -124,10 +160,19 @@ class Order extends CI_Controller {
 		}
 	}
 
+	public function deletePesan($id,$id_proses) {
+		if ($_SESSION['printer']['user']['role']){
+			$result = $this->MProses->deletePesan($id);
+			if ($result) redirect('order/detailcetak/'.$id_proses);
+		} else {
+			redirect('login');
+		}
+	}
+
 	public function deleteComment($id) {
 		if ($_SESSION['printer']['user']['role']){
 			$result = $this->MProses->deleteComment($id);
-			if ($result) redirect('order/lstcetak');
+			if ($result) redirect('order/detailcetak/'.$id_proses);
 		} else {
 			redirect('login');
 		}
@@ -232,6 +277,7 @@ class Order extends CI_Controller {
                     // masukin ke db
                     if ($this->input->post('button') == 'save'){
                     	$id = $this->MProses->insertProses($data['panjang'],$data['lebar'],$data['tinggi'],$data['id_jenis_cetak'],$data['id_jenis_kertas'],$data['id_varian'],$data['qty'],$data['total'],$data['id_laminasi'],$data['porforasi'],$data['numerator'],$data['uv'],$data['tanggal_jadi']);
+                    	$result = $this->MProses->changeProsesStatus($id,2);
                     	redirect('order/detailcetak/'.$id,'refresh');
                     }
 				}
@@ -292,10 +338,10 @@ class Order extends CI_Controller {
 		}
 	}
 
-	public function deleteImage($id) {
+	public function deleteImage($id,$id_proses) {
 		if ($_SESSION['printer']['user']['role']){
 			$result = $this->MProses->deleteImage($id);
-			if ($result) redirect('order/lstcetak');
+			if ($result) redirect('order/detailcetak/'.$id_proses);
 		} else {
 			redirect('login');
 		}

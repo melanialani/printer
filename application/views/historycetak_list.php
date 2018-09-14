@@ -13,7 +13,7 @@
                     <div class="content table-responsive">
                         <table id="myTable" class="table table-striped">
                             <thead><tr>
-                                <!-- <th align="center">ID Order Cetak</th> -->
+                                <th align="center">ID Order Cetak</th>
                                 <th align="center">Tanggal Transaksi</th>
                                 <th align="center">Jenis Cetakan</th>
                                 <th align="center">Jenis Kertas</th>
@@ -26,7 +26,7 @@
                             <tbody>
                                 <?php foreach ($row as $key => $value) { ?>
                                     <tr>
-                                        <!-- <td><?= $value['id_proses']; ?></td> -->
+                                        <td><?= $value['id_proses']; ?></td>
                                         <td><?= date('d M Y H:i', strtotime($value['tanggal_dibuat'])); ?></td>
                                         <td><?= $value['nama_jenis_cetakan']; ?></td>
                                         <td><?= $value['namajenis_kertas']; ?></td>

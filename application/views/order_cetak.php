@@ -216,7 +216,7 @@
                             </div>
                             <br/>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-info btn-fill btn-wd" value="save" id="button" name="button">Mulai Order Cetakan</button>
+                                <button type="submit" class="btn btn-info btn-fill btn-wd" value="save" id="button" name="button">Mulai Proses Order Cetakan</button>
                             </div>
                             <div class="clearfix"></div>
                         </form>

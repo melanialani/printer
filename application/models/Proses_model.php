@@ -88,6 +88,22 @@ class Proses_model extends CI_Model {
 		return $this->db->update('proses', $record);
 	}
 
+	public function updateHargaProses($id,$total) {
+		$record = array(
+			'total_harga' => $total
+		);
+		$this->db->where('id_proses', $id);
+		return $this->db->update('proses', $record);
+	}
+
+	public function changeProsesStatus($id,$status=1) {
+		$record = array(
+			'status' => $status
+		);
+		$this->db->where('id_proses', $id);
+		return $this->db->update('proses', $record);
+	}
+
 	public function deleteProses($id) {
 		$this->db->where('id_proses', $id);
 		return $this->db->delete('proses');
@@ -196,6 +212,30 @@ class Proses_model extends CI_Model {
 	public function deleteComment($id) {
 		$this->db->where('id_comment', $id);
 		return $this->db->delete('comment');
+	}
+
+#region pesan
+	public function getPesanProses($id) {
+		$this->db->from('pesan p, user u');
+		$this->db->where('p.id_user = u.id_user');
+		$this->db->where('p.id_proses', $id);
+		$this->db->order_by('p.tanggal_dibuat', 'desc');
+		return $this->db->get()->result_array();
+	}
+
+	public function insertPesan($proses,$pesan) {
+		$record = array(
+	  		'id_proses' => $proses,
+	  		'id_user' => $_SESSION['printer']['user']['id_user'],
+	  		'pesan' => $pesan,
+	  		'tanggal_dibuat' => date('Y-m-d H:i:s')
+		);
+		return $this->db->insert('pesan', $record);
+	}
+
+	public function deletePesan($id) {
+		$this->db->where('id_pesan', $id);
+		return $this->db->delete('pesan');
 	}
 
 #region others
