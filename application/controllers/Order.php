@@ -297,12 +297,15 @@ class Order extends CI_Controller {
 			$data['page_note'] = 'Upload file yang akan dicetak';
 			$data['edited'] = false;
 
+			// generate file name
+			$filename = preg_replace("/[^a-zA-Z0-9]/", "", $_FILES["file_name"]['name']) . 'x' . preg_replace("/[^a-zA-Z0-9]/", "", strval(date('Y-m-d H:i:s'))) . 'x' . $_SESSION['printer']['user']['id_user'];
+
 			if (!empty($_FILES["file_name"])){
 			   	$config = array(
 			     	'upload_path' => 'upload/',
 			     	'allowed_types' => 'jpeg|jpg|png|psd|cdr', // |extensi lainnya
 			     	'max_size' => '0',
-			     	'file_name' => preg_replace("/[^a-zA-Z0-9]/", "", $_FILES["file_name"]['name'])
+			     	'file_name' => $filename
 			     	//'encrypt_name' => true // encrypt file name
 			   	);
 			   	
