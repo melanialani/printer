@@ -32,7 +32,31 @@ class Order extends CI_Controller {
 
 			$trans = $this->MOrder->getOneHeader($id);
 			$data['trans'] = $trans[0];
+
 			$data['row'] = $this->MOrder->getDetailBeli($id);
+			$data['pesan'] = $this->MOrder->getPesanTrans($id);
+
+			if ($this->input->post('button') == 'savenewmessage'){ // save message left by client or admin alike
+				$result = $this->MOrder->insertPesanTrans($this->input->post('id_trans'),$this->input->post('newmessage'));
+				if ($result) $this->session->set_flashdata('msg', 'Pesan berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detail/'.$id);
+			} else if ($this->input->post('button') == 'savenewprice'){ // admin can change price total after nego
+				$result = $this->MOrder->updateHargaTrans($this->input->post('id_trans'),$this->input->post('newprice'));
+				if ($result) $this->session->set_flashdata('msg', 'Perubahan total harga berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detail/'.$id);
+			} else if ($this->input->post('button') == 'continuetopickup'){ // customer agree with the price, order can be picked up
+				$result = $this->MOrder->updateStatusTrans($this->input->post('id_trans'),21);
+				if ($result) $this->session->set_flashdata('msg', 'Perubahan total harga berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detail/'.$id);
+			} else if ($this->input->post('button') == 'continuetodone'){ // mark as done
+				$result = $this->MOrder->updateStatusTrans($this->input->post('id_trans'),1);
+				if ($result) $this->session->set_flashdata('msg', 'Status order selesai berhasil di input!');
+				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
+		    	redirect('order/detail/'.$id);
+			} 
 
 			$this->load->view('header', $data);
 			$this->load->view('historybeli_detail', $data);
@@ -131,8 +155,9 @@ class Order extends CI_Controller {
 				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
 		    	redirect('order/detailcetak/'.$id);
 			} else if ($this->input->post('button') == 'continuetoprint'){ // payment confirmation - save to db hbeli & dbeli proses
-				$result = $this->MProses->changeProsesStatus($this->input->post('id_proses'),4);
-				if ($result) $this->session->set_flashdata('msg', 'Deal desain terakhir berhasil di input!');
+				$result1 = $this->MOrder->insertBeliCetak($this->input->post('id_proses'));
+				$result2 = $this->MProses->changeProsesStatus($this->input->post('id_proses'),4);
+				if ($result1 && $result2) $this->session->set_flashdata('msg', 'Pembayaran telah dikonfirmasi!');
 				else $this->session->set_flashdata('msg', 'Tidak bisa menyimpan ke database');
 		    	redirect('order/detailcetak/'.$id);
 			} else if ($this->input->post('button') == 'continuetoprint2'){ // deal harga, continue to upload design
@@ -208,6 +233,7 @@ class Order extends CI_Controller {
 				}
 
 				$id = $this->MOrder->insertBeliBarang($this->input->post('total_harga'),$dbeli);
+				$result = $this->MOrder->updateStatusTrans($id,20);
 				redirect('order/detail/'.$id,'refresh');
 			}
 			
@@ -305,8 +331,8 @@ class Order extends CI_Controller {
 			     	'upload_path' => 'upload/',
 			     	'allowed_types' => 'jpeg|jpg|png|psd|cdr', // |extensi lainnya
 			     	'max_size' => '0',
-			     	'file_name' => $filename
-			     	//'encrypt_name' => true // encrypt file name
+			     	'file_name' => $filename,
+			     	'encrypt_name' => true // encrypt file name
 			   	);
 			   	
 			   	$this->load->library('upload');

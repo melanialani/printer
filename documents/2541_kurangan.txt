@@ -1,0 +1,5 @@
+PR:
+- Alur Program
+- Notifikasi by email untuk ke customer saja (setiap ada update)
+- Nego harga
+- Tampilan gamau ke kanan minta turun ke bwh smua buat isi data (kalo isa comment e taruh d sblh kanan e

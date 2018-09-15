@@ -1,0 +1,91 @@
+Ukuran kertas
+Plano besar 79 x 109
+Plano kecil 65 x 100
+Plano sedang 70 x 100
+A2 42 x 59.4
+A3 29.7 x 42
+A4 21 x 29.7
+F4 21.5 x 33
+
+Ukuran plate
+Mesin toko 25.4 x 39.4
+Mesin 48   48.3 x 40.5
+Mesin 58   57 x 50.8
+Mesin 66   67 x 56
+
+Cara hitung plate
+1) buat design jadi ukuran 2d (pxl)
+2) hasil ukuran 2d dibagi dengan ukuran plate yang ada pada database
+3) ambil ukuran plate dengan hasil bagi yang terkecil
+
+Cara hitung laminating
+p x l cetak an x 0.25 x lbr(kalau tidak sampai 250rb tetap kena 250rb)
+
+Cara hitung uv
+p x l cetak an x 0.6 x lbr(kalau tidak sampai 250rb tetap kena 250rb)
+
+Cara hitung uv spot
+p x l cetak an x 0.1 x lbr(kalau tidak sampai 250rb tetap kena 250rb)
+
+Ongkos jilid buku biasa
+1 folio = 2rb
+1/2 folio = 1,5rb
+
+Ongkos jilid spiral
+1/2 folio = 3k
+1 folio = 5k
+
+Ongkos cetak 1 rim = 500lbr (pembulatan ke atas)
+plate toko = 7,5k / rim
+mesin 48 = 100k / rim
+mesin 58 = 100k / rim
+mesin 66 = 125k / rim
+
+Cara hitung harga kertas
+1) ambil ukuran plate yang di pakai
+2) ukuran plate dibagi dengan ukuran kertas
+3) ambil hasil yang terbulat (4,5 ; 5 ; 4,3) => ambil yang 5 kalau tidak ada ambil yang mendekati bulat 4,5
+
+Cara hitung cost
+1) cari harga plate
+2) cari ongkos cetak
+3) cari harga kertas per pax
+4) harga plate + ongkos cetak + harga kertas per pax / (cetak brp lembar / hasil bagi dalam perhitungan cost plate)
+
+jenis kertas (-> yang bertanda banyak macem gram)
+hvs e
+hvs ->
+art paper ->
+ivory ->
+duplek ->
+dorslah
+cd
+
+1pax isi 500lbr
+ncr
+hvs
+cd
+dorslah
+ap 85gr
+
+1 pax isi 250lbr
+ap 100
+
+1 pax isi 100lbr
+
+
+satuan kertas plano per pax! 
+satuan kertas berukuran per lembar
+
+Alur Order Cetakan customer
+1) customer isi form data (masuk db status konfirm 0)
+2) system kluarkan price list dengan konfirmasi (update harga yg sudah dinego)
+3) customer upload file desain (insert desain)
+4) konfirmasi desain (update desain)
+5) kluarin invoice dengan confirm(ya/tidak)
+6) customer pencet cetak (masuk ke admin buat di konfirmasi)
+7) admin check pembayaran dan konfirm (update status konfirm 1)
+
+Alur Order Barang
+1) customer isi form (masuk db status konfirm 0, masuk ke admin untuk d konfirmasi)
+2) admin konfirm (update status konfirm 1)
